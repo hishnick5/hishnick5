@@ -81,11 +81,10 @@ function calculateMatrix() {
 }
 
 function openPDF(text) {
-  const match = text.match(/\((\d+)\)/); // Исправлено!
+  const match = text.match(/\((\d+)\)/);
   if (match) {
     const number = match[1];
-    const path = `arkana/${number}.pdf`;
-    document.getElementById('pdfViewer').src = path;
-    document.getElementById('pdfViewer').style.display = 'block';
+    const path = `Arkana/${number}.pdf`;
+    window.open(path, '_blank'); // Сразу открывает PDF в новой вкладке
   }
 }
