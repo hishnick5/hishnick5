@@ -1,0 +1,22 @@
+main.container {
+  padding: 2rem 0;
+}
+
+table {
+  margin-top: 1rem;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table, th, td {
+  border: 1px solid #999;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+iframe {
+  margin-top: 2rem;
+}
