@@ -80,11 +80,18 @@ function calculateMatrix() {
   });
 }
 
+// Подключаем обработчик формы для Enter
+document.getElementById('dateForm').addEventListener('submit', e => {
+  e.preventDefault();
+  calculateMatrix();
+});
+
 function openPDF(text) {
   const match = text.match(/\((\d+)\)/);
   if (match) {
     const number = match[1];
     const path = `Arkana/${number}.pdf`;
-    window.open(path, '_blank'); // Сразу открывает PDF в новой вкладке
+    window.open(path, '_blank');
   }
 }
+
