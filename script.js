@@ -63,7 +63,7 @@ function calculateMatrix() {
     [`Энергия года (${c})`, `ЧД 3 (${ch_d3})`, `КУ 3 (${karmic3})`, `${period2} - ${period3}`],
     [`Предназначение (${d})`, `ЧД 4 (${ch_d4})`, `КУ 4 (${karmic4})`, `${period3} - ∞`],
     [`Денежный код: ${money_code}`, `Число судьбы ${destiny}`, `КУ 5 (${karmic5})`, `Возраст: ${age}`],
-    [`Денежный канал: ${fin_code}`, `Ведическое число: ${day_r}`, `Аркан: (${editNumb(pure.split('').reduce((a, b) => a + Number(b), 0))})`, `Дата рождения: ${fullDate}`]
+    [`Денежный канал: ${fin_code}`, `Число сознания: ${day_r}`, `Аркан: (${editNumb(pure.split('').reduce((a, b) => a + Number(b), 0))})`, `Дата рождения: ${fullDate}`]
   ];
 
   const tableBody = document.querySelector('#resultTable tbody');
