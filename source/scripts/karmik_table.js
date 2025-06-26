@@ -12,12 +12,13 @@ function reduce(num) {
 function calculateMatrix() {
   const input = document.getElementById('birthdate').value;
   if (!input) return alert('Выберите дату рождения!');
+  // const [day, month, year] = input.split('.').map(Number); // ✅ исправлено
   const [year, month, day] = input.split('-').map(Number);
   const dayStr = String(day).padStart(2, '0');
   const monthStr = String(month).padStart(2, '0');
   const yearStr = String(year);
   const fullDate = `${dayStr}.${monthStr}.${yearStr}`;
-  const pure = (fullDate.replace(/\./g, '').replace(/0/g, ''));
+  const pure = fullDate.replace(/\./g, '').replace(/0/g, '');
   let destiny = String(pure.split('').reduce((a, b) => a + Number(b), 0));
   while (destiny.length > 1) destiny = String(destiny.split('').reduce((a, b) => a + Number(b), 0));
 
@@ -80,6 +81,24 @@ function calculateMatrix() {
   });
 }
 
+// // flatpickr с русской локалью
+// flatpickr("#birthdate", {
+//   dateFormat: "d.m.Y",
+//   allowInput: true,
+//   locale: "ru"
+// });
+
+// // Позволяет рассчитывать таблицу при нажатии Enter
+// document.addEventListener('keydown', function (e) {
+//   if (e.key === 'Enter') {
+//     const active = document.activeElement;
+//     if (active && active.tagName === 'INPUT') {
+//       e.preventDefault();
+//       calculateMatrix();
+//     }
+//   }
+// });
+
 // Подключаем обработчик формы для Enter
 document.getElementById('dateForm').addEventListener('submit', e => {
   e.preventDefault();
@@ -94,4 +113,3 @@ function openPDF(text) {
     window.open(path, '_blank');
   }
 }
-

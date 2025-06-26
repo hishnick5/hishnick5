@@ -1,57 +1,62 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Расчёт Кармической Матрицы</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
-  <link rel="stylesheet" href="source/styles/karmik_table.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Расчёт Кармической Матрицы</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+    <link rel="stylesheet" href="source/styles/karmik_table.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 </head>
+
 <body>
-  <nav class="container-fluid">
-    <ul>
-      <li><strong>Кармическая Матрица</strong></li>
-    </ul>
-    <ul>
-      <!-- <li><a href="#">Главная</a></li> -->
-      <li><a href="index.html">Главная</a></li>
-      <li><a href="financial_schedule.html">Финансовый график</a></li>
-      <!-- <li><a href="#">О нас</a></li> -->
-      <!-- <li><a href="#" role="button">Контакты</a></li> -->
-    </ul>
-  </nav>
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>Кармическая Матрица</strong></li>
+        </ul>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="financial_schedule.html">Финансовый график</a></li>
+        </ul>
+    </nav>
 
-  <main class="container">
-    <div class="grid">
-      <section>
-        <hgroup>
-          <h2>Введите дату рождения</h2>
-          <h3>и получите подробный расчёт </h3>
-        </hgroup>
+    <main class="container">
+        <div class="grid">
+            <section>
+                <hgroup>
+                    <h2>Введите дату рождения</h2>
+                    <h3>и получите подробный расчёт </h3>
+                </hgroup>
 
-        <!-- Красивая форма -->
-        <form id="dateForm" style="margin-bottom: 1rem;">
-          <input type="date" id="birthdate" name="birthdate" aria-label="Дата рождения" required />
-          <button type="submit" id="calculateButton">Рассчитать</button>
-        </form>
+                <!-- Красивая форма -->
+                <form id="dateForm" style="margin-bottom: 1rem;">
+                    <input type="date" id="birthdate" name="birthdate" aria-label="Дата рождения" required />
+                    <button type="submit" id="calculateButton">Рассчитать</button>
+                </form>
 
-        <table id="resultTable">
-          <thead>
-            <tr><th>Путь</th><th>Число Достижений</th><th>Кармический Узел</th><th>Период</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </section>
-    </div>
-  </main>
+                <table id="resultTable">
+                    <thead>
+                        <tr>
+                            <th>Путь</th>
+                            <th>Число Достижений</th>
+                            <th>Кармический Узел</th>
+                            <th>Период</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+        </div>
+    </main>
 
-  <footer class="container">
-    <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
-  </footer>
+    <footer class="container">
+        <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
+    </footer>
 
-  <script src="source/scripts/karmik_table.js"></script>
+    <script src="source/scripts/karmik_table.js"></script>
 </body>
+
 </html>

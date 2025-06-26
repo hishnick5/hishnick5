@@ -8,12 +8,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
     <link rel="stylesheet" href="source/styles/financial_schedule.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Flatpickr CSS + JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+    <!-- Flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+
 </head>
 
 <body>
     <nav class="container-fluid">
         <ul>
-            
+
             <li><strong>Финансовый график на год</strong></li>
         </ul>
         <ul>
@@ -28,7 +37,7 @@
 
         <form id="financeForm">
             <label for="birthdate">Дата рождения
-                <input type="date" id="birthdate" placeholder="например: 1990-01-31" required />
+                <input type="date" id="birthdate" placeholder="например: 31-01-1990" required />
             </label>
 
             <label for="targetYear">Финансовый год для прогноза
@@ -44,7 +53,7 @@
             </label>
 
             <button type="submit">Построить график</button>
-            
+
         </form>
 
         <div class="chart-container">

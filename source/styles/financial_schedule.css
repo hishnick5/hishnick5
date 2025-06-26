@@ -1,60 +1,116 @@
 main.container {
-  padding: 2rem 0;
-  max-width: 720px;
-  margin: 0 auto;
+    padding: 2rem 0;
+    max-width: 720px;
+    margin: 0 auto;
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
 }
 
 /* Форму делаем в 2 колонки на широких экранах */
+/* На больших экранах (768px и выше) — форма в 2 колонки */
 @media (min-width: 768px) {
-  form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
 
-  form button {
-    grid-column: span 2;
-  }
-
-  #saveChartBtn {
-    grid-column: span 2;
-  }
+    form button,
+    #saveChartBtn {
+        grid-column: span 2;
+    }
 }
+
+/* 📱 На маленьких экранах (до 600px) — график на всю ширину */
+@media (max-width: 600px) {
+    .chart-container {
+        width: 100% !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+
+
+form button {
+    grid-column: span 2;
+}
+
+#saveChartBtn {
+    grid-column: span 2;
+}
+
 
 /* Уменьшаем поля */
 form input {
-  padding: 0.4rem 0.6rem !important;
-  font-size: 0.9rem !important;
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.9rem !important;
 }
 
 label {
-  font-size: 0.9rem;
+    font-size: 0.9rem;
 }
 
 /* График и кнопка */
 .chart-container {
-  width: 45vw;
-  max-width: 100%;
-  margin: 1rem auto;
-  text-align: center;
+    width: 45vw;
+    max-width: 100%;
+    margin: 1rem auto;
+    text-align: center;
 }
 
 canvas {
-  width: 100% !important;
-  height: auto !important;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+    width: 100% !important;
+    height: auto !important;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
 #saveChartBtn {
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+}
+
+/* Обёртка вокруг input + label */
+.datepicker-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+/* Само поле */
+.datepicker-group input {
+  width: 100%;
+  padding: 0.75rem 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+/* Подпись-плавающий лейбл */
+.datepicker-group label {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.6rem;
+  background: white;
+  padding: 0 0.25rem;
+  color: #777;
+  font-size: 0.9rem;
+  transition: 0.2s ease all;
+  pointer-events: none;
+}
+
+/* Анимация при фокусе */
+.datepicker-group input:focus + label,
+.datepicker-group input:not(:placeholder-shown) + label {
+  top: -0.6rem;
+  left: 0.4rem;
+  font-size: 0.75rem;
+  color: #0d6efd;
 }

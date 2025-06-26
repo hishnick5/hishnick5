@@ -4,7 +4,7 @@ function reduceToSingleDigit(n) {
 }
 
 function calculateLifeCode(dateStr) {
-  const [year, month, day] = dateStr.split('-').map(Number);
+  const [day, month, year] = dateStr.split('.').map(Number);
   const code = String(day * month * year).padEnd(6, '0');
   return code.slice(0, 6);
 }
@@ -85,4 +85,11 @@ document.getElementById('saveChartBtn').addEventListener('click', () => {
   link.download = 'financial-chart.png';
   link.href = chart.toBase64Image();
   link.click();
+});
+
+// flatpickr на кастомный input
+flatpickr("#birthdate", {
+  dateFormat: "d.m.Y",
+  allowInput: true,
+  locale: "ru"
 });

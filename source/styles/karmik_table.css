@@ -33,3 +33,41 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #0b5ed7;
 }
+
+/* Обёртка вокруг input + label */
+.datepicker-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+/* Само поле */
+.datepicker-group input {
+  width: 100%;
+  padding: 0.75rem 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+/* Подпись-плавающий лейбл */
+.datepicker-group label {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.6rem;
+  background: white;
+  padding: 0 0.25rem;
+  color: #777;
+  font-size: 0.9rem;
+  transition: 0.2s ease all;
+  pointer-events: none;
+}
+
+/* Анимация при фокусе */
+.datepicker-group input:focus + label,
+.datepicker-group input:not(:placeholder-shown) + label {
+  top: -0.6rem;
+  left: 0.4rem;
+  font-size: 0.75rem;
+  color: #0d6efd;
+}
