@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Финансовый график</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+    <link rel="stylesheet" href="source/styles/financial_schedule.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>Финансовый график на год</strong></li>
+        </ul>
+        <ul>
+            <li><a href="karmik_table.html">Кармическая матрица</a></li>
+            <!-- <li><a href="financial_schedule.html">Финансовый график</a></li> -->
+        </ul>
+    </nav>
+
+    <main class="container">
+        <h2>Финансовый прогноз</h2>
+
+        <form id="financeForm">
+            <label for="birthdate">Дата рождения
+                <input type="date" id="birthdate" placeholder="например: 1990-01-31" required />
+            </label>
+
+            <label for="targetYear">Финансовый год для прогноза
+                <input type="number" id="targetYear" placeholder="например: 2025" required />
+            </label>
+
+            <label for="fatherName">Имя вашего отца
+                <input type="text" id="fatherName" placeholder="например: Алексей" required />
+            </label>
+
+            <label for="yourName">Ваше имя
+                <input type="text" id="yourName" placeholder="например: Иван" required />
+            </label>
+
+            <button type="submit">Построить график</button>
+            
+        </form>
+
+        <div class="chart-container">
+            <canvas id="financeChart"></canvas>
+        </div>
+
+        <form id="financeForm">
+            <button type="button" id="saveChartBtn">Сохранить график</button>
+        </form>
+
+    </main>
+
+    <footer class="container">
+        <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
+    </footer>
+
+    <script src="source/scripts/financial_schedule.js"></script>
+</body>
+
+</html>
