@@ -1,73 +1,164 @@
-main.container {
-  padding: 2rem 0;
+
+/* === Общие стили === */
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(#0e0e0e, #1f1f1f);
+  color: #f3f3f3;
+  padding: 40px;
 }
 
-table {
-  margin-top: 1rem;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-table, th, td {
-  border: 1px solid #999;
-}
-
-th, td {
+.navbar {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px 30px;
+  border-radius: 12px;
   text-align: center;
-  padding: 8px;
+  margin-bottom: 30px;
+}
+
+.navbar a {
+  color: #f8e7c1;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #e3cf9b;
+}
+
+/* === Контейнер основного содержимого === */
+main.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 1.2s ease;
+}
+
+h2, h3 {
+  text-align: center;
+  color: #f8e7c1;
 }
 
 form {
-  display: flex;
-  gap: 1rem;
+  margin-top: 20px;
+  animation: fadeInUp 1s ease;
 }
 
-button[type="submit"] {
-  background-color: #0d6efd;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-button[type="submit"]:hover {
-  background-color: #0b5ed7;
-}
-
-/* Обёртка вокруг input + label */
-.datepicker-group {
-  position: relative;
-  margin-bottom: 1rem;
-}
-
-/* Само поле */
-.datepicker-group input {
+input[type="date"] {
   width: 100%;
-  padding: 0.75rem 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: #1f1f1f;
+  color: #f3f3f3;
+  border: 1px solid #f8e7c1;
+  font-size: 1em;
 }
 
-/* Подпись-плавающий лейбл */
-.datepicker-group label {
-  position: absolute;
-  left: 0.5rem;
-  top: 0.6rem;
-  background: white;
-  padding: 0 0.25rem;
-  color: #777;
-  font-size: 0.9rem;
-  transition: 0.2s ease all;
-  pointer-events: none;
+button {
+  background: #f8e7c1;
+  color: #1f1f1f;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-/* Анимация при фокусе */
-.datepicker-group input:focus + label,
-.datepicker-group input:not(:placeholder-shown) + label {
-  top: -0.6rem;
-  left: 0.4rem;
-  font-size: 0.75rem;
-  color: #0d6efd;
+button:hover {
+  background: #e3cf9b;
+  transform: scale(1.03);
+}
+
+/* === Таблица результатов === */
+table#resultTable {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+  animation: fadeInUp 1s ease;
+}
+
+table#resultTable th,
+table#resultTable td {
+  border: 1px solid #f8e7c1;
+  padding: 12px;
+  text-align: center;
+}
+
+table#resultTable th {
+  background-color: rgba(248, 231, 193, 0.1);
+  color: #f8e7c1;
+}
+
+table#resultTable td {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* === Футер === */
+footer.container {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+footer a {
+  color: #f8e7c1;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* === Анимации === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === Мобильная адаптация === */
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+
+  nav.container-fluid {
+    padding: 10px;
+  }
+
+  nav.container-fluid a {
+    display: inline-block;
+    margin: 8px;
+    font-size: 0.95em;
+  }
+
+  main.container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  input, button {
+    font-size: 1em;
+  }
+
+  table#resultTable th,
+  table#resultTable td {
+    font-size: 0.9em;
+    padding: 8px;
+  }
 }

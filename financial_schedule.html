@@ -20,53 +20,43 @@
 </head>
 
 <body>
-    <nav class="container-fluid">
-        <ul>
+    <nav class="navbar">
+        <a href="index.html">Главная</a>
+        <a href="karmik_table.html">Кармическая матрица</a>
 
-            <li><strong>Финансовый график на год</strong></li>
-        </ul>
-        <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="karmik_table.html">Кармическая матрица</a></li>
-            <!-- <li><a href="financial_schedule.html">Финансовый график</a></li> -->
-        </ul>
     </nav>
 
     <main class="container">
-        <h2>Финансовый прогноз</h2>
+        <h2>🔮 Финансовый прогноз на год</h2>
 
         <form id="financeForm">
             <label for="birthdate">Дата рождения
-                <input type="date" id="birthdate" placeholder="например: 31-01-1990" required />
+                <input type="date" id="birthdate" placeholder="например: 31-12-1990" required>
             </label>
 
-            <label for="targetYear">Финансовый год для прогноза
-                <input type="number" id="targetYear" placeholder="например: 2025" required />
+            <label for="targetYear">Год для прогноза
+                <input type="number" id="targetYear" placeholder="например: 2025" required>
             </label>
 
-            <label for="fatherName">Имя вашего отца
-                <input type="text" id="fatherName" placeholder="например: Алексей" required />
+            <label for="fatherName">Имя отца
+                <input type="text" id="fatherName" placeholder="например: Алексей" required>
             </label>
 
             <label for="yourName">Ваше имя
-                <input type="text" id="yourName" placeholder="например: Иван" required />
+                <input type="text" id="yourName" placeholder="например: Иван" required>
             </label>
 
-            <button type="submit">Построить график</button>
-
+            <button type="submit">📊 Построить график</button>
         </form>
 
         <div class="chart-container">
             <canvas id="financeChart"></canvas>
         </div>
 
-        <form id="financeForm">
-            <button type="button" id="saveChartBtn">Сохранить график</button>
-        </form>
-
+        <button type="button" id="saveChartBtn">💾 Сохранить график</button>
     </main>
 
-    <footer class="container">
+    <footer>
         <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
     </footer>
 

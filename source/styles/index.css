@@ -1,114 +1,103 @@
+
+/* Основной фон и шрифт */
 body {
-    background: radial-gradient(ellipse at center, #0d1b2a 0%, #000814 100%);
-    color: #f1f1f1;
-    font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(#0e0e0e, #1f1f1f);
+  color: #f3f3f3;
+  padding: 40px 20px;
 }
 
-main h2,
-h3,
-hgroup h2,
-hgroup h3 {
-    color: #f8f9fa;
-}
-
-ul li strong {
-    color: #ffee58;
-}
-
-section ul {
-    list-style: square;
-    padding-left: 1.2rem;
-}
-
-nav {
-    background: #03045e;
-    border-bottom: 2px solid #0077b6;
-}
-
-nav a {
-    color: #90e0ef !important;
-}
-
-nav a:hover {
-    color: #caf0f8 !important;
-}
-
-footer {
-    margin-top: 2rem;
-    text-align: center;
-    color: #888;
-    font-size: 0.8rem;
-}
-
-section {
-    margin-bottom: 2rem;
-}
-
-body {
-    margin: 0;
-    font-family: 'Georgia', serif;
-    background: linear-gradient(#0e0e0e, #1f1f1f);
-    color: #f3f3f3;
-    padding: 40px;
-}
-
+/* Навигационная панель */
 .navbar {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 15px 30px;
-    border-radius: 12px;
-    text-align: center;
-    margin-bottom: 30px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .navbar a {
-    color: #f8e7c1;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-    transition: color 0.3s;
+  color: #f8e7c1;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
 }
 
 .navbar a:hover {
-    color: #e3cf9b;
+  color: #e3cf9b;
 }
 
+/* Контейнер */
 .container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 1.2s ease-in-out;
 }
 
+/* Заголовок */
 h1 {
-    font-size: 2.5em;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #f8e7c1;
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f8e7c1;
 }
 
+/* Параграфы */
 p {
-    font-size: 1.2em;
-    line-height: 1.7em;
-    margin-bottom: 20px;
+  font-size: 1.2em;
+  line-height: 1.7em;
+  margin-bottom: 20px;
 }
 
+/* Кнопка CTA */
 .cta-button {
-    display: block;
-    width: max-content;
-    margin: 40px auto 0;
-    padding: 15px 30px;
-    font-size: 1.1em;
-    color: #1f1f1f;
-    background: #f8e7c1;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background 0.3s;
-    text-decoration: none;
+  display: block;
+  width: max-content;
+  margin: 40px auto 0;
+  padding: 15px 30px;
+  font-size: 1.1em;
+  color: #1f1f1f;
+  background: #f8e7c1;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
 }
 
 .cta-button:hover {
-    background: #e3cf9b;
+  background: #e3cf9b;
+  transform: scale(1.05);
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Адаптация под мобильные */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.8em;
+  }
+  p {
+    font-size: 1em;
+  }
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 1em;
+  }
 }
