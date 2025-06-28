@@ -2,45 +2,46 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Совместимость по дате рождения</title>
-    <link rel="stylesheet" href="source/styles/compatibility.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Совместимость по дате рождения</title>
+  <link rel="stylesheet" href="source/styles/compatibility.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <a href="index.html">Главная</a>
-        <a href="karmik_table.html">Кармическая матрица</a>
-        <a href="financial_schedule.html">Финансовый график</a>
-    </nav>
+  <nav class="navbar">
+    <a href="index.html">Главная</a>
+    <a href="karmik_table.html">Кармическая матрица</a>
+    <a href="financial_schedule.html">Финансовый график</a>
+    <a href="predict.html">Прогнозы событий</a>
+  </nav>
 
-    <main class="container">
-        <h2>Совместимость по дате рождения</h2>
+  <main class="container">
+    <h2>Совместимость по дате рождения</h2>
 
-        <form id="compatForm">
-            <label>Дата рождения мужчины:
-                <input type="date" id="maleDate" required />
-            </label>
-            <label>Дата рождения женщины:
-                <input type="date" id="femaleDate" required />
-            </label>
-            <button type="submit">Рассчитать</button>
-        </form>
+    <form id="compatForm">
+      <label>Дата рождения мужчины:
+        <input type="date" id="maleDate" required />
+      </label>
+      <label>Дата рождения женщины:
+        <input type="date" id="femaleDate" required />
+      </label>
+      <button type="submit">Рассчитать</button>
+    </form>
 
-        <div id="maleTable"></div>
-        <div id="femaleTable"></div>
-        <div id="compatTable"></div>
-    </main>
+    <div id="maleTable"></div>
+    <div id="femaleTable"></div>
+    <div id="compatTable"></div>
+  </main>
 
-    <footer class="container">
-        <small><a href="index.html">Главная</a> • <a href="karmik_table.html">Кармическая матрица</a></small>
-    </footer>
+  <footer class="container">
+    <small><a href="index.html">Главная</a> • <a href="karmik_table.html">Кармическая матрица</a></small>
+  </footer>
 
-    <script src="source/scripts/compatibility.js"></script>
+  <script src="source/scripts/compatibility.js"></script>
 </body>
 
 </html>

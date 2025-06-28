@@ -1,0 +1,179 @@
+/* === Общие стили === */
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(#0e0e0e, #1f1f1f);
+  color: #f3f3f3;
+  padding: 40px;
+}
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.navbar a {
+  color: #f8e7c1;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #e3cf9b;
+}
+
+/* === Контейнер основного содержимого === */
+main.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 1.2s ease;
+}
+
+h2,
+h3 {
+  text-align: center;
+  color: #f8e7c1;
+}
+
+form {
+  margin-top: 20px;
+  animation: fadeInUp 1s ease;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: #1f1f1f;
+  color: #f3f3f3;
+  border: 1px solid #f8e7c1;
+  font-size: 1em;
+}
+
+button {
+  background: #f8e7c1;
+  color: #1f1f1f;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: #e3cf9b;
+  transform: scale(1.03);
+}
+
+/* === Таблица результатов === */
+table#resultTable {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+  animation: fadeInUp 1s ease;
+}
+
+table#resultTable th,
+table#resultTable td {
+  border: 1px solid #f8e7c1;
+  padding: 12px;
+  text-align: center;
+}
+
+table#resultTable th {
+  background-color: rgba(248, 231, 193, 0.1);
+  color: #f8e7c1;
+}
+
+table#resultTable td {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* === Футер === */
+footer.container {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+footer a {
+  color: #f8e7c1;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* === Анимации === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Мобильная адаптация === */
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+
+  nav.container-fluid {
+    padding: 10px;
+  }
+
+  nav.container-fluid a {
+    display: inline-block;
+    margin: 8px;
+    font-size: 0.95em;
+  }
+
+  main.container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  input,
+  button {
+    font-size: 1em;
+  }
+
+  table#resultTable th,
+  table#resultTable td {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+}

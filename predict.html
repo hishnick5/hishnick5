@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Прогноз на день, месяц, год</title>
+  <link rel="stylesheet" href="source/styles/predict.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <a href="index.html">Главная</a>
+    <a href="karmik_table.html">Кармическая матрица</a>
+    <a href="financial_schedule.html">Финансовый график</a>
+    <a href="compatibility.html">Совместимость</a>
+  </nav>
+
+  <main class="container">
+    <h2>Прогнозы на основе даты рождения</h2>
+
+    <form id="predictForm">
+      <label>Дата рождения:
+        <input type="date" id="birthdate" required />
+      </label>
+    </form>
+
+    <section style="margin-top: 40px;">
+      <h3>Прогноз на день</h3>
+      <label>Дата прогноза:
+        <input type="date" id="predictDay" />
+      </label>
+      <button onclick="predictForDay()">Рассчитать</button>
+      <div id="dayResult"></div>
+    </section>
+
+    <section style="margin-top: 60px;">
+      <h3>Прогноз на месяц</h3>
+      <label>Месяц и год прогноза:
+        <input type="month" id="predictMonth" />
+      </label>
+      <button onclick="predictForMonth()">Рассчитать</button>
+      <div id="monthResult"></div>
+    </section>
+
+    <section style="margin-top: 60px;">
+      <h3>Прогноз на год</h3>
+      <label>Год прогноза:
+        <input type="number" id="predictYear" min="1900" max="2100" placeholder="Например, 2025" />
+      </label>
+      <button onclick="predictForYear()">Рассчитать</button>
+      <div id="yearResult"></div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>© Твой космический сайт • <a href="index.html">На главную</a></small>
+  </footer>
+
+  <script src="source/scripts/predict.js"></script>
+</body>
+
+</html>

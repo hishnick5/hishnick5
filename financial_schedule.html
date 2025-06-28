@@ -2,65 +2,66 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Финансовый график</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
-    <link rel="stylesheet" href="source/styles/financial_schedule.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Flatpickr CSS + JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
-    <!-- Flatpickr -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Финансовый график</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <link rel="stylesheet" href="source/styles/financial_schedule.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Flatpickr CSS + JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
+  <!-- Flatpickr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ru.js"></script>
 
 </head>
 
 <body>
-    <nav class="navbar">
-        <a href="index.html">Главная</a>
-        <a href="karmik_table.html">Кармическая матрица</a>
-        <a href="compatibility.html">Совместимость</a>
-    </nav>
+  <nav class="navbar">
+    <a href="index.html">Главная</a>
+    <a href="karmik_table.html">Кармическая матрица</a>
+    <a href="compatibility.html">Совместимость</a>
+    <a href="predict.html">Прогнозы событий</a>
+  </nav>
 
-    <main class="container">
-        <h2>🔮 Финансовый прогноз на год</h2>
+  <main class="container">
+    <h2>🔮 Финансовый прогноз на год</h2>
 
-        <form id="financeForm">
-            <label for="birthdate">Дата рождения
-                <input type="date" id="birthdate" placeholder="например: 31-12-1990" required>
-            </label>
+    <form id="financeForm">
+      <label for="birthdate">Дата рождения
+        <input type="date" id="birthdate" placeholder="например: 31-12-1990" required>
+      </label>
 
-            <label for="targetYear">Год для прогноза
-                <input type="number" id="targetYear" placeholder="например: 2025" required>
-            </label>
+      <label for="targetYear">Год для прогноза
+        <input type="number" id="targetYear" placeholder="например: 2025" required>
+      </label>
 
-            <label for="fatherName">Имя отца
-                <input type="text" id="fatherName" placeholder="например: Алексей" required>
-            </label>
+      <label for="fatherName">Имя отца
+        <input type="text" id="fatherName" placeholder="например: Алексей" required>
+      </label>
 
-            <label for="yourName">Ваше имя
-                <input type="text" id="yourName" placeholder="например: Иван" required>
-            </label>
+      <label for="yourName">Ваше имя
+        <input type="text" id="yourName" placeholder="например: Иван" required>
+      </label>
 
-            <button type="submit">📊 Построить график</button>
-        </form>
+      <button type="submit">📊 Построить график</button>
+    </form>
 
-        <div class="chart-container">
-            <canvas id="financeChart"></canvas>
-        </div>
+    <div class="chart-container">
+      <canvas id="financeChart"></canvas>
+    </div>
 
-        <button type="button" id="saveChartBtn">💾 Сохранить график</button>
-    </main>
+    <button type="button" id="saveChartBtn">💾 Сохранить график</button>
+  </main>
 
-    <footer>
-        <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
-    </footer>
+  <footer>
+    <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
+  </footer>
 
-    <script src="source/scripts/financial_schedule.js"></script>
+  <script src="source/scripts/financial_schedule.js"></script>
 </body>
 
 </html>
