@@ -81,24 +81,6 @@ function calculateMatrix() {
   });
 }
 
-// // flatpickr с русской локалью
-// flatpickr("#birthdate", {
-//   dateFormat: "d.m.Y",
-//   allowInput: true,
-//   locale: "ru"
-// });
-
-// // Позволяет рассчитывать таблицу при нажатии Enter
-// document.addEventListener('keydown', function (e) {
-//   if (e.key === 'Enter') {
-//     const active = document.activeElement;
-//     if (active && active.tagName === 'INPUT') {
-//       e.preventDefault();
-//       calculateMatrix();
-//     }
-//   }
-// });
-
 // Подключаем обработчик формы для Enter
 document.getElementById('dateForm').addEventListener('submit', e => {
   e.preventDefault();

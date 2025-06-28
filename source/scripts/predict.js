@@ -84,7 +84,7 @@ function predictForMonth() {
 function predictForYear() {
   const b = getBirthParts();
   const year = document.getElementById("predictYear").value;
-  if (!b || !year) return alert("Введите дату рождения и год.");
+  if (!b || !year) return alert("Введите дату рождения!");
 
   const clean = `${b.day}${b.month}${year}`.replace(/0/g, '');
   let classic = [...clean].reduce((a, b) => a + +b, 0);

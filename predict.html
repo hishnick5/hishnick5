@@ -28,7 +28,7 @@
 
     <section style="margin-top: 40px;">
       <h3>Прогноз на день</h3>
-      <label>Дата прогноза:
+      <label>день, месяц, год:
         <input type="date" id="predictDay" />
       </label>
       <button onclick="predictForDay()">Рассчитать</button>
@@ -37,7 +37,7 @@
 
     <section style="margin-top: 60px;">
       <h3>Прогноз на месяц</h3>
-      <label>Месяц и год прогноза:
+      <label>месяц и год:
         <input type="month" id="predictMonth" />
       </label>
       <button onclick="predictForMonth()">Рассчитать</button>
@@ -46,8 +46,8 @@
 
     <section style="margin-top: 60px;">
       <h3>Прогноз на год</h3>
-      <label>Год прогноза:
-        <input type="number" id="predictYear" min="1900" max="2100" placeholder="Например, 2025" />
+      <label>год:
+        <input type="number" id="predictYear" min="2500" max="2900" placeholder="Например, 2025" />
       </label>
       <button onclick="predictForYear()">Рассчитать</button>
       <div id="yearResult"></div>
