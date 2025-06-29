@@ -5,8 +5,8 @@ function reduceToSingleDigit(n) {
 
 function calculateLifeCode(dateStr) {
   const [day, month, year] = dateStr.split('.').map(Number);
-  const code = String(day * month * year).padEnd(6, '0');
-  return code.slice(0, 6);
+  const result = String(day * month * year);
+  return result.slice(0, 6).padEnd(6, '0');
 }
 
 function calcNameDiff(father, your) {
@@ -16,14 +16,15 @@ function calcNameDiff(father, your) {
 function calculateFinCode(lifeCode, yearCode, nameDiff) {
   const result = [];
   for (let i = 0; i < 6; i++) {
-    const a = parseInt(lifeCode[i]);
-    const b = parseInt(yearCode[i]);
+    const a = parseInt(lifeCode[i], 10);
+    const b = parseInt(yearCode[i], 10);
     result.push(reduceToSingleDigit(a + b));
   }
   result.push(nameDiff);
   return result;
 }
 
+// Отрисовка графика
 const form = document.getElementById('financeForm');
 const ctx = document.getElementById('financeChart').getContext('2d');
 let chart;
@@ -31,22 +32,23 @@ let chart;
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  const birthdate = document.getElementById('birthdate').value;
+  const birthdateInput = document.getElementById('birthdate').value;
   const yearStr = document.getElementById('targetYear').value.trim();
   const fatherName = document.getElementById('fatherName').value.trim();
   const yourName = document.getElementById('yourName').value.trim();
 
-  if (!birthdate || !yearStr.match(/^[0-9]{4}$/)) {
-    alert('Введите корректную дату и год.');
+  if (!birthdateInput || !yearStr.match(/^\d{4}$/)) {
+    alert('Введите корректную дату рождения и год!');
     return;
   }
 
+  const birthdate = birthdateInput.split('-').reverse().join('.');
   const lifeCode = calculateLifeCode(birthdate);
-  const yearDigit = String(reduceToSingleDigit(parseInt(yearStr)));
+  const yearDigit = String(reduceToSingleDigit(yearStr));
   const yearCode = yearDigit.repeat(6);
   const nameDiff = calcNameDiff(fatherName, yourName);
   const result = calculateFinCode(lifeCode, yearCode, nameDiff);
-  const fullResult = result.concat(result.slice(0, 5)); // всего 12 значений
+  const fullResult = result.concat(result.slice(0, 5)); // 12 месяцев
 
   const months = [
     'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
@@ -79,11 +81,6 @@ form.addEventListener('submit', e => {
   });
 });
 
-function toggleMenu() {
-  const nav = document.querySelector('.nav-links');
-  nav.classList.toggle('show');
-}
-
 document.getElementById('saveChartBtn').addEventListener('click', () => {
   if (!chart) return alert('Сначала постройте график!');
   const link = document.createElement('a');
@@ -92,3 +89,18 @@ document.getElementById('saveChartBtn').addEventListener('click', () => {
   link.click();
 });
 
+// Навигационное меню
+function toggleMenu() {
+  document.querySelector('.nav-links').classList.toggle('show');
+}
+
+// Обработка Enter
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') {
+    const active = document.activeElement;
+    if (active && ['birthdate', 'targetYear', 'fatherName', 'yourName'].includes(active.id)) {
+      e.preventDefault();
+      document.getElementById('financeForm').requestSubmit();
+    }
+  }
+});

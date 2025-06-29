@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Финансовый график</title>
   <link rel="stylesheet" href="source/styles/financial_schedule.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -26,35 +27,33 @@
     <h2>🔮 Финансовый прогноз на год</h2>
 
     <form id="financeForm">
-      <label for="birthdate">Дата рождения
-        <input type="date" id="birthdate" placeholder="например: 31-12-1990" required>
+      <label for="birthdate">Дата рождения:
+        <input type="date" id="birthdate" placeholder="например: 1990-12-31" required />
       </label>
 
-      <label for="targetYear">Год для прогноза
-        <input type="number" id="targetYear" placeholder="например: 2025" required>
+      <label for="targetYear">Год для прогноза:
+        <input type="number" id="targetYear" placeholder="например: 2025" required />
       </label>
-      <br>
-      <label for="fatherName">Имя отца
-        <input type="text" id="fatherName" placeholder="например: Алексей" required>
+
+      <label for="fatherName">Имя отца:
+        <input type="text" id="fatherName" placeholder="например: Алексей" required />
       </label>
-      <br>
-      <br>
-      <label for="yourName">Ваше имя
-        <input type="text" id="yourName" placeholder="например: Иван" required>
+
+      <label for="yourName">Ваше имя:
+        <input type="text" id="yourName" placeholder="например: Иван" required />
       </label>
-      <br>
-      <br>
+
       <button type="submit">📊 Построить график</button>
     </form>
 
-    <div class="chart-container">
+    <div class="chart-container section-block">
       <canvas id="financeChart"></canvas>
     </div>
 
     <button type="button" id="saveChartBtn">💾 Сохранить график</button>
   </main>
 
-  <footer>
+  <footer class="container">
     <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
   </footer>
 

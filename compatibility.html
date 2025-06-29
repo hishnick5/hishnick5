@@ -23,25 +23,27 @@
   </nav>
 
   <main class="container">
-    <h2>Совместимость по дате рождения</h2>
+    <h2>❤️ Совместимость по дате рождения</h2>
 
     <form id="compatForm">
-      <label>Дата рождения мужчины:
+      <label for="maleDate">Дата рождения мужчины:
         <input type="date" id="maleDate" required />
       </label>
-      <label>Дата рождения женщины:
+
+      <label for="femaleDate">Дата рождения женщины:
         <input type="date" id="femaleDate" required />
       </label>
-      <button type="submit">Рассчитать</button>
+
+      <button type="submit">🔍 Рассчитать</button>
     </form>
 
-    <div id="maleTable"></div>
-    <div id="femaleTable"></div>
-    <div id="compatTable"></div>
+    <section class="section-block" id="maleTable"></section>
+    <section class="section-block" id="femaleTable"></section>
+    <section class="section-block" id="compatTable"></section>
   </main>
 
   <footer class="container">
-    <small><a href="index.html">Главная</a> • <a href="karmik_table.html">Кармическая матрица</a></small>
+    <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
   </footer>
 
   <script src="source/scripts/compatibility.js"></script>

@@ -23,32 +23,27 @@
   </nav>
 
   <main class="container">
-    <div class="grid">
-      <section>
-        <hgroup>
-          <h2>Введите дату рождения</h2>
-          <h3>и получите Кармический расчёт</h3>
-        </hgroup>
+    <h2>🔢 Расчёт Кармической Матрицы</h2>
+    <h3>Введите дату рождения и получите значения</h3>
 
-        <!-- Красивая форма -->
-        <form id="dateForm" style="margin-bottom: 1rem;">
-          <input type="date" id="birthdate" name="birthdate" aria-label="Дата рождения" required />
-          <button type="submit" id="calculateButton">Рассчитать</button>
-        </form>
+    <form id="dateForm" style="margin-bottom: 1rem;">
+      <label for="birthdate">Дата рождения:
+        <input type="date" id="birthdate" name="birthdate" required />
+      </label>
+      <button type="submit" id="calculateButton">📌 Рассчитать</button>
+    </form>
 
-        <table id="resultTable">
-          <thead>
-            <tr>
-              <th>Путь</th>
-              <th>Число Достижений</th>
-              <th>Кармический Узел</th>
-              <th>Период</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </section>
-    </div>
+    <table id="resultTable">
+      <thead>
+        <tr>
+          <th>Путь</th>
+          <th>Число Достижений</th>
+          <th>Кармический Узел</th>
+          <th>Период</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </main>
 
   <footer class="container">
