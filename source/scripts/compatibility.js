@@ -98,6 +98,11 @@ function renderCompatibility(m, f) {
   container.innerHTML = html;
 }
 
+function toggleMenu() {
+  const nav = document.querySelector('.nav-links');
+  nav.classList.toggle('show');
+}
+
 document.getElementById('compatForm').addEventListener('submit', e => {
   e.preventDefault();
   const maleDate = document.getElementById('maleDate').value;

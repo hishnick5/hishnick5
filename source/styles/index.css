@@ -1,103 +1,223 @@
-
-/* Основной фон и шрифт */
+/* === Общие стили === */
 body {
   margin: 0;
   font-family: 'Georgia', serif;
   background: linear-gradient(#0e0e0e, #1f1f1f);
   color: #f3f3f3;
-  padding: 40px 20px;
+  padding: 40px;
 }
 
-/* Навигационная панель */
 .navbar {
   background-color: rgba(255, 255, 255, 0.05);
   padding: 15px 30px;
   border-radius: 12px;
-  text-align: center;
   margin-bottom: 30px;
+  position: relative;
 }
 
-.navbar a {
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #f8e7c1;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
   color: #f8e7c1;
   text-decoration: none;
-  margin: 0 15px;
   font-weight: bold;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.3s;
 }
 
-.navbar a:hover {
+.nav-links a:hover {
   color: #e3cf9b;
 }
 
-/* Контейнер */
-.container {
+/* === Контейнер основного содержимого === */
+main.container {
   max-width: 800px;
   margin: auto;
   padding: 20px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 20px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  animation: fadeIn 1.2s ease-in-out;
+  animation: fadeIn 1.2s ease;
 }
 
-/* Заголовок */
-h1 {
-  font-size: 1.5em;
+h2,
+h3 {
   text-align: center;
-  margin-bottom: 20px;
   color: #f8e7c1;
 }
 
-/* Параграфы */
-p {
-  font-size: 1.2em;
-  line-height: 1.7em;
-  margin-bottom: 20px;
+form {
+  margin-top: 20px;
+  animation: fadeInUp 1s ease;
 }
 
-/* Кнопка CTA */
-.cta-button {
-  display: block;
-  width: max-content;
-  margin: 40px auto 0;
-  padding: 15px 30px;
-  font-size: 1.1em;
-  color: #1f1f1f;
+input[type="date"],
+input[type="month"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: #1f1f1f;
+  color: #f3f3f3;
+  border: 1px solid #f8e7c1;
+  font-size: 1em;
+}
+
+button {
   background: #f8e7c1;
+  color: #1f1f1f;
+  padding: 12px 24px;
   border: none;
   border-radius: 30px;
+  font-size: 1em;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: #e3cf9b;
+  transform: scale(1.03);
+}
+
+/* === Таблица результатов === */
+table#resultTable {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+  animation: fadeInUp 1s ease;
+}
+
+table#resultTable th,
+table#resultTable td {
+  border: 1px solid #f8e7c1;
+  padding: 12px;
+  text-align: center;
+}
+
+table#resultTable th {
+  background-color: rgba(248, 231, 193, 0.1);
+  color: #f8e7c1;
+}
+
+table#resultTable td {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* === Футер === */
+footer.container {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+footer a {
+  color: #f8e7c1;
   text-decoration: none;
 }
 
-.cta-button:hover {
-  background: #e3cf9b;
-  transform: scale(1.05);
+footer a:hover {
+  text-decoration: underline;
 }
 
-/* Анимация появления */
+/* === Анимации === */
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Адаптация под мобильные */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.8em;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  p {
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Мобильная адаптация === */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background-color: rgba(50, 50, 50, 0.95);
+    flex-direction: column;
+    display: none;
+    border-radius: 0 0 12px 12px;
+    z-index: 1000;
+    overflow: hidden;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  main.container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  input,
+  button {
     font-size: 1em;
   }
-  .cta-button {
-    padding: 12px 24px;
-    font-size: 1em;
+
+  table#resultTable th,
+  table#resultTable td {
+    font-size: 0.9em;
+    padding: 8px;
   }
 }

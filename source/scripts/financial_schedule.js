@@ -79,6 +79,11 @@ form.addEventListener('submit', e => {
   });
 });
 
+function toggleMenu() {
+  const nav = document.querySelector('.nav-links');
+  nav.classList.toggle('show');
+}
+
 document.getElementById('saveChartBtn').addEventListener('click', () => {
   if (!chart) return alert('Сначала постройте график!');
   const link = document.createElement('a');
@@ -87,9 +92,3 @@ document.getElementById('saveChartBtn').addEventListener('click', () => {
   link.click();
 });
 
-// flatpickr на кастомный input
-flatpickr("#birthdate", {
-  dateFormat: "d.m.Y",
-  allowInput: true,
-  locale: "ru"
-});

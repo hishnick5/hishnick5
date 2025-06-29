@@ -1,1 +1,5 @@
-// Пока что скрипт не обязателен, но можно позже добавить анимации или Easter egg :)
+// Бургер меню
+function toggleMenu() {
+  const nav = document.querySelector('.nav-links');
+  nav.classList.toggle('show');
+}

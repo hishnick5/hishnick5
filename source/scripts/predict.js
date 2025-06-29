@@ -112,6 +112,11 @@ function predictForYear() {
   );
 }
 
+function toggleMenu() {
+  const nav = document.querySelector('.nav-links');
+  nav.classList.toggle('show');
+}
+
 // Обработка клавиши Enter
 document.addEventListener('keydown', function (e) {
   if (e.key !== 'Enter') return;

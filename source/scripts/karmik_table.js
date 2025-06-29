@@ -81,6 +81,11 @@ function calculateMatrix() {
   });
 }
 
+function toggleMenu() {
+  const nav = document.querySelector('.nav-links');
+  nav.classList.toggle('show');
+}
+
 // Подключаем обработчик формы для Enter
 document.getElementById('dateForm').addEventListener('submit', e => {
   e.preventDefault();

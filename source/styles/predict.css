@@ -11,19 +11,45 @@ body {
   background-color: rgba(255, 255, 255, 0.05);
   padding: 15px 30px;
   border-radius: 12px;
-  text-align: center;
   margin-bottom: 30px;
+  position: relative;
 }
 
-.navbar a {
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #f8e7c1;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
   color: #f8e7c1;
   text-decoration: none;
-  margin: 0 15px;
   font-weight: bold;
   transition: color 0.3s;
 }
 
-.navbar a:hover {
+.nav-links a:hover {
   color: #e3cf9b;
 }
 
@@ -38,8 +64,7 @@ main.container {
   animation: fadeIn 1.2s ease;
 }
 
-h2,
-h3 {
+h2, h3 {
   text-align: center;
   color: #f8e7c1;
 }
@@ -49,7 +74,9 @@ form {
   animation: fadeInUp 1s ease;
 }
 
-input[type="date"] {
+input[type="date"],
+input[type="month"],
+input[type="number"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -119,43 +146,45 @@ footer a:hover {
 
 /* === Анимации === */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* === Мобильная адаптация === */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   body {
     padding: 20px;
   }
 
-  nav.container-fluid {
-    padding: 10px;
+  .nav-toggle {
+    display: block;
   }
 
-  nav.container-fluid a {
-    display: inline-block;
-    margin: 8px;
-    font-size: 0.95em;
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background-color: rgba(50, 50, 50, 0.95);
+    flex-direction: column;
+    display: none;
+    border-radius: 0 0 12px 12px;
+    z-index: 1000;
+    overflow: hidden;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+    text-align: center;
   }
 
   main.container {
@@ -166,8 +195,7 @@ footer a:hover {
     font-size: 1.6em;
   }
 
-  input,
-  button {
+  input, button {
     font-size: 1em;
   }
 
