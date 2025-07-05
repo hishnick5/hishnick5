@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Совместимость по дате рождения</title>
-  <link rel="stylesheet" href="source/styles/compatibility.css" />
+  <title>Психоматрица Пифагора</title>
+  <link rel="stylesheet" href="source/styles/piphagor.css" />
 </head>
 
 <body>
@@ -24,30 +24,40 @@
   </nav>
 
   <main class="container">
-    <h2>❤️ Совместимость по дате рождения</h2>
+    <h2>Психоматрица Пифагора</h2>
 
-    <form id="compatForm">
-      <label for="maleDate">Дата рождения мужчины:
-        <input type="date" id="maleDate" required />
+    <form id="piphagorForm">
+      <label>Дата рождения:
+        <input type="date" id="birthdate" required />
       </label>
-
-      <label for="femaleDate">Дата рождения женщины:
-        <input type="date" id="femaleDate" required />
+      <label>Ваше имя:
+        <input type="text" id="yourName" placeholder="например: Алексей" required />
       </label>
-
-      <button type="submit">🔍 Рассчитать</button>
+      <button type="submit">📌 Рассчитать психоматрицу</button>
     </form>
 
-    <section class="section-block" id="maleTable"></section>
-    <section class="section-block" id="femaleTable"></section>
-    <section class="section-block" id="compatTable"></section>
+    <section class="section-block">
+      <h3>Таблица Пифагора</h3>
+      <table id="tablePiphagor"></table>
+    </section>
+
+    <section class="section-block">
+      <h3>Таблица Пифагора + Число имени</h3>
+      <table id="tableWithName"></table>
+    </section>
+
+    <section class="section-block">
+      <h3>Дополнения</h3>
+      <table id="tableAdditions"></table>
+    </section>
   </main>
 
   <footer class="container">
     <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
   </footer>
 
-  <script src="source/scripts/compatibility.js"></script>
+  <script src="source/scripts/zodiac_descriptions.js"></script>
+  <script src="source/scripts/piphagor.js"></script>
 </body>
 
 </html>
