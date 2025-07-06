@@ -138,6 +138,33 @@ form#piphagorForm button:hover {
   font-weight: bold;
 }
 
+/* Нумерованные ячейки (только таблица Пифагора и с числом имени) */
+.numbered-cell {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #f8e7c1;
+  position: relative;
+  text-align: center; /* 🟢 Сохраняем выравнивание текста по центру */
+  vertical-align: middle;
+}
+
+/* Маленький номер в левом верхнем углу */
+.cell-number {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-size: 0.8em;
+  color: #aaa;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* Ячейки-заголовки внутри тела таблицы */
+.table-header-cell {
+  background-color: rgba(248, 231, 193, 0.1);
+  color: #f8e7c1;
+  font-weight: bold;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -240,4 +267,15 @@ footer a:hover {
     flex-direction: column;
     gap: 14px;
   }
+}
+
+/* Третья таблица (Дополнения) — тёмный стиль */
+.extra-table table th {
+  background-color: rgba(20, 20, 20, 0.9);
+  color: #f3f3f3;
+}
+
+.extra-table table td {
+  background-color: rgba(40, 40, 40, 0.5);
+  color: #e0ddd5;
 }

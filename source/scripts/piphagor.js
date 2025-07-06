@@ -26,16 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const [year, month, day] = birthdate.split('-');
     const formattedDate = `${day}.${month}.${year}`;
+
     const digits = (day + month + year).replace(/0/g, '').split('').map(Number);
     const countDigits = Array(10).fill(0);
     digits.forEach(d => countDigits[d]++);
 
     const body1 = digits.reduce((a, b) => a + b, 0);
     const body2 = body1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    const body = `${body1}`;
+    const body = `${body1}${body2}`;
+
     const soul1 = Math.abs(body1 - digits[0] * 2);
     const soul2 = soul1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    const soul = `${soul1}`;
+    const soul = `${soul1}${soul2}`;
 
     const destiny = digits.reduce((a, b) => a + b, 0).toString().split('').reduce((a, b) => a + parseInt(b), 0);
     const temperament = countDigits.filter(n => n > 0).length;
@@ -76,46 +78,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameMatrixTable = document.getElementById('nameMatrixTable');
     const extraTable = document.getElementById('extraTable');
 
-    const matrixHeader = [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temp}`];
-
-    const matrixRows = [
+    matrixTable.innerHTML = buildHTMLTable([
       [`Характер\n${ch}`, `Здоровье\n${hl}`, `Харизма\n${cr}`, `Самореализация\n4`],
       [`Энергия\n${en}`, `Логика\n${lg}`, `Удача\n${lk}`, `Помощь семье\n5`],
       [`Интерес\n${in_}`, `Труд\n${lb}`, `Память\n${mem}`, `Привычки\n3`],
       [`Самооценка\n5`, `Семья, быт\n2`, `Талант\n5`, `Духовность\n6`]
-    ];
+    ], [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temp}`], true);
 
-    const extrasHeader = [`Жизненный код:\n991500`, `Счастливые числа:\n9-18-27`, `Зрелость души:\n12`, `Ваш камень удачи:\nАлмаз и Жемчуг`];
+    nameMatrixTable.innerHTML = buildHTMLTable([
+      [`Характер\n${ch}`, `Здоровье\n${hl}`, `Харизма\n${cr}`, `Самореализация\n4`],
+      [`Энергия\n${en}`, `Логика\n${lg}`, `Удача\n${lk}`, `Помощь семье\n5`],
+      [`Интерес\n${in_}`, `Труд\n${lb}`, `Память\n${mem}`, `Привычки\n3`],
+      [`Самооценка\n5`, `Семья, быт\n2`, `Талант\n5`, `Духовность\n6`]
+    ], [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temp}`], true);
 
-    const extrasRows = [
-      [`Код Богатства:\n1539`, `Прогноз Солнца:\n6`, `Число имени:\n${nameDigit}`, `Психотип личности:\nМудрец`],
-      [`Код Удачи:\n15299`, `Прогноз Луны:\n5`, `Годы Рока:\n22, 47, 52, 58`, `Здоровье:\nСердце, лёгкие. Желудок.`],
-      [`Персональное число:\n6`, `Итог года:\n1`, `Тех.расклад Тела:\n${body}`, `Тех.расклад Души:\n${soul}`]
-    ];
-
-    matrixTable.innerHTML = buildHTMLTable(matrixRows, matrixHeader);
-    nameMatrixTable.innerHTML = buildHTMLTable(matrixRows, matrixHeader);
-    extraTable.innerHTML = buildHTMLTable(extrasRows, extrasHeader);
+    extraTable.innerHTML = buildHTMLTable([
+      [`Зрелость души:\n12`, `Прогноз Луны:\n5`, `Психотип личности:\nМудрец`, `Число имени:\n${nameDigit}`],
+      [`Код Богатства:\n1539`, `Итог года:\n1`, `Здоровье:\nСердце, лёгкие. Желудок.`, `Годы Рока:\n22, 47, 52, 58`],
+      [`Код Удачи:\n15299`, `Тех.расклад Тела:\n${body}`, `Тех.расклад Души:\n${soul}`, `Персональное число:\n6`]
+    ], [`Жизненный код:\n991500`, `Счастливые числа:\n9-18-27`, `Зрелость души:\n12`, `Ваш камень удачи:\nАлмаз и Жемчуг`], false);
   }
 
-  function buildHTMLTable(rows, headers) {
-    let thead = `<thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>`;
+  function addCellNumber(cellText, number) {
+    return `<div class="cell-number">${number}</div>${cellText.replace(/\n/g, '<br>')}`;
+  }
+
+  function buildHTMLTable(rows, headers, addNumbers = false) {
+    let thead = `<thead><tr>${headers.map(h => `<th>${h.replace(/\n/g, '<br>')}</th>`).join('')}</tr></thead>`;
     let tbody = '<tbody>';
-    rows.forEach(row => {
-      tbody += `<tr>${row.map(cell => `<td>${cell.replace(/\n/g, '<br>')}</td>`).join('')}</tr>`;
+    rows.forEach((row, rowIndex) => {
+      tbody += '<tr>';
+      row.forEach((cell, colIndex) => {
+        if (addNumbers && rowIndex < 3 && colIndex < 3) {
+          const number = rowIndex * 3 + colIndex + 1;
+          tbody += `<td class="numbered-cell">${addCellNumber(cell, number)}</td>`;
+        } else {
+          tbody += `<td class="table-header-cell">${cell.replace(/\n/g, '<br>')}</td>`;
+        }
+      });
+      tbody += '</tr>';
     });
     tbody += '</tbody>';
     return `<table class="result-table bordered">${thead}${tbody}</table>`;
   }
 });
 
+// Бургер-меню
 function toggleMenu() {
   const nav = document.querySelector('.nav-links');
   nav.classList.toggle('show');
 }
-
-document.querySelectorAll('.nav-links a').forEach(link =>
-  link.addEventListener('click', () => {
-    document.querySelector('.nav-links').classList.remove('show');
-  })
-);
