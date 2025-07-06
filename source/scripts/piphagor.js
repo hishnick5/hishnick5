@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateMatrix();
   });
 
-  // Обработка на Enter
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' && document.activeElement.tagName !== 'TEXTAREA') {
       e.preventDefault();
@@ -27,18 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const [year, month, day] = birthdate.split('-');
     const formattedDate = `${day}.${month}.${year}`;
-
     const digits = (day + month + year).replace(/0/g, '').split('').map(Number);
     const countDigits = Array(10).fill(0);
     digits.forEach(d => countDigits[d]++);
 
     const body1 = digits.reduce((a, b) => a + b, 0);
     const body2 = body1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    const body = `${body1}${body2}`;
-
+    const body = `${body1}`;
     const soul1 = Math.abs(body1 - digits[0] * 2);
     const soul2 = soul1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    const soul = `${soul1}${soul2}`;
+    const soul = `${soul1}`;
 
     const destiny = digits.reduce((a, b) => a + b, 0).toString().split('').reduce((a, b) => a + parseInt(b), 0);
     const temperament = countDigits.filter(n => n > 0).length;
@@ -53,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const luck = countDigits[3];
     const character = countDigits[1];
 
-    // Пример расчёта по имени (вес — как в py-коде)
     const nameTable = {
       1: 'аисъ', 2: 'бйты', 3: 'вкуь', 4: 'глфэ',
       5: 'дмхю', 6: 'енця', 7: 'ёоч', 8: 'жпш', 9: 'зрщ'
@@ -80,26 +76,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameMatrixTable = document.getElementById('nameMatrixTable');
     const extraTable = document.getElementById('extraTable');
 
-    matrixTable.innerHTML = buildHTMLTable([
+    const matrixHeader = [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temp}`];
+
+    const matrixRows = [
       [`Характер\n${ch}`, `Здоровье\n${hl}`, `Харизма\n${cr}`, `Самореализация\n4`],
       [`Энергия\n${en}`, `Логика\n${lg}`, `Удача\n${lk}`, `Помощь семье\n5`],
       [`Интерес\n${in_}`, `Труд\n${lb}`, `Память\n${mem}`, `Привычки\n3`],
       [`Самооценка\n5`, `Семья, быт\n2`, `Талант\n5`, `Духовность\n6`]
-    ], [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temp}`]);
+    ];
 
-    nameMatrixTable.innerHTML = buildHTMLTable([
-      [`Характер\n${ch}`, `Здоровье\n${hl}`, `Харизма\n${cr}`, `Самореализация\n4`],
-      [`Энергия\n${en}`, `Логика\n${lg}`, `Удача\n${lk}`, `Помощь семье\n5`],
-      [`Интерес\n${in_}`, `Труд\n${lb}`, `Память\n${mem}`, `Привычки\n3`],
-      [`Самооценка\n5`, `Семья, быт\n2`, `Талант\n5`, `Духовность\n6`]
-    ], [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temp}`]);
+    const extrasHeader = [`Жизненный код:\n991500`, `Счастливые числа:\n9-18-27`, `Зрелость души:\n12`, `Ваш камень удачи:\nАлмаз и Жемчуг`];
 
-    extraTable.innerHTML = buildHTMLTable([
-      [`Зрелость души:\n12`, `Прогноз Луны:\n5`, `Психотип личности:\nМудрец`],
-      [`Код Богатства:\n1539`, `Итог года:\n1`, `Здоровье:\nСердце, лёгкие. Желудок.`],
-      [`Код Удачи:\n15299`, `Тех.расклад:\n${body}/${soul}`, `Годы Рока:\n22, 47, 52, 58`],
-      [`Счастливые числа:\n9-18-27`, `Персональное число:\n6`, `Число имени:\n${nameDigit}`]
-    ], [`Жизненный код:\n991500`, `Прогноз Солнца:\n6`, `Камень удачи:\nАлмаз и Жемчуг`]);
+    const extrasRows = [
+      [`Код Богатства:\n1539`, `Прогноз Солнца:\n6`, `Число имени:\n${nameDigit}`, `Психотип личности:\nМудрец`],
+      [`Код Удачи:\n15299`, `Прогноз Луны:\n5`, `Годы Рока:\n22, 47, 52, 58`, `Здоровье:\nСердце, лёгкие. Желудок.`],
+      [`Персональное число:\n6`, `Итог года:\n1`, `Тех.расклад Тела:\n${body}`, `Тех.расклад Души:\n${soul}`]
+    ];
+
+    matrixTable.innerHTML = buildHTMLTable(matrixRows, matrixHeader);
+    nameMatrixTable.innerHTML = buildHTMLTable(matrixRows, matrixHeader);
+    extraTable.innerHTML = buildHTMLTable(extrasRows, extrasHeader);
   }
 
   function buildHTMLTable(rows, headers) {
@@ -113,13 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Мобильное меню — переключатель
 function toggleMenu() {
   const nav = document.querySelector('.nav-links');
   nav.classList.toggle('show');
 }
 
-// Обработка закрытия меню при клике на ссылку (дополнительно — по желанию)
 document.querySelectorAll('.nav-links a').forEach(link =>
   link.addEventListener('click', () => {
     document.querySelector('.nav-links').classList.remove('show');

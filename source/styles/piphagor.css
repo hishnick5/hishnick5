@@ -138,6 +138,26 @@ form#piphagorForm button:hover {
   font-weight: bold;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  border: 1px solid #f8e7c1;
+  padding: 10px;
+  text-align: center;
+  white-space: pre-line;
+}
+
+table th {
+  background-color: rgba(248, 231, 193, 0.1);
+  color: #f8e7c1;
+}
+
+
 /* === Блоки между таблицами === */
 .section-block {
   margin-top: 60px;
