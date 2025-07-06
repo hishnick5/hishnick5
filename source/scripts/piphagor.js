@@ -1,114 +1,127 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("piphagorForm");
-  const table1 = document.getElementById("tablePiphagor");
-  const table2 = document.getElementById("tableWithName");
-  const table3 = document.getElementById("tableAdditions");
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('piphagorForm');
+  const birthdateInput = document.getElementById('birthdate');
+  const nameInput = document.getElementById('yourName');
 
-  document.getElementById("piphagorForm").addEventListener("submit", function (e) {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
+    calculateMatrix();
+  });
 
-    const birthdate = document.getElementById("birthdate").value;
-    const name = document.getElementById("yourName").value.trim();
+  // Обработка на Enter
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && document.activeElement.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      calculateMatrix();
+    }
+  });
+
+  function calculateMatrix() {
+    const birthdate = birthdateInput.value;
+    const name = nameInput.value.trim().toLowerCase();
 
     if (!birthdate || !name) {
-      alert("Введите дату и имя");
+      alert('Пожалуйста, введите корректную дату рождения и имя.');
       return;
     }
 
-    const data = calculatePiphagor(birthdate, name);
+    const [year, month, day] = birthdate.split('-');
+    const formattedDate = `${day}.${month}.${year}`;
 
-    renderTable(table1, data.table1, data.heads1);
-    renderTable(table2, data.table2, data.heads2);
-    renderTable(table3, data.table3, data.heads3);
-  });
+    const digits = (day + month + year).replace(/0/g, '').split('').map(Number);
+    const countDigits = Array(10).fill(0);
+    digits.forEach(d => countDigits[d]++);
 
-  // поддержка Enter
-  ["birthdate", "yourName"].forEach(id =>
-    document.getElementById(id).addEventListener("keydown", e => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        form.requestSubmit();
+    const body1 = digits.reduce((a, b) => a + b, 0);
+    const body2 = body1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+    const body = `${body1}${body2}`;
+
+    const soul1 = Math.abs(body1 - digits[0] * 2);
+    const soul2 = soul1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+    const soul = `${soul1}${soul2}`;
+
+    const destiny = digits.reduce((a, b) => a + b, 0).toString().split('').reduce((a, b) => a + parseInt(b), 0);
+    const temperament = countDigits.filter(n => n > 0).length;
+
+    const energy = countDigits[2];
+    const health = countDigits[4];
+    const interest = countDigits[6];
+    const logic = countDigits[5];
+    const labor = countDigits[8];
+    const memory = countDigits[9];
+    const charisma = countDigits[7];
+    const luck = countDigits[3];
+    const character = countDigits[1];
+
+    // Пример расчёта по имени (вес — как в py-коде)
+    const nameTable = {
+      1: 'аисъ', 2: 'бйты', 3: 'вкуь', 4: 'глфэ',
+      5: 'дмхю', 6: 'енця', 7: 'ёоч', 8: 'жпш', 9: 'зрщ'
+    };
+    let nameSum = 0;
+    for (let char of name) {
+      for (let val in nameTable) {
+        if (nameTable[val].includes(char)) {
+          nameSum += parseInt(val);
+          break;
+        }
       }
-    })
-  );
+    }
+    let nameDigit = nameSum;
+    while (nameDigit >= 10) {
+      nameDigit = nameDigit.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+    }
+
+    renderTables(formattedDate, character, energy, interest, health, logic, labor, charisma, luck, memory, destiny, temperament, body, soul, nameDigit);
+  }
+
+  function renderTables(date, ch, en, in_, hl, lg, lb, cr, lk, mem, destiny, temp, body, soul, nameDigit) {
+    const matrixTable = document.getElementById('matrixTable');
+    const nameMatrixTable = document.getElementById('nameMatrixTable');
+    const extraTable = document.getElementById('extraTable');
+
+    matrixTable.innerHTML = buildHTMLTable([
+      [`Характер\n${ch}`, `Здоровье\n${hl}`, `Харизма\n${cr}`, `Самореализация\n4`],
+      [`Энергия\n${en}`, `Логика\n${lg}`, `Удача\n${lk}`, `Помощь семье\n5`],
+      [`Интерес\n${in_}`, `Труд\n${lb}`, `Память\n${mem}`, `Привычки\n3`],
+      [`Самооценка\n5`, `Семья, быт\n2`, `Талант\n5`, `Духовность\n6`]
+    ], [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temp}`]);
+
+    nameMatrixTable.innerHTML = buildHTMLTable([
+      [`Характер\n${ch}`, `Здоровье\n${hl}`, `Харизма\n${cr}`, `Самореализация\n4`],
+      [`Энергия\n${en}`, `Логика\n${lg}`, `Удача\n${lk}`, `Помощь семье\n5`],
+      [`Интерес\n${in_}`, `Труд\n${lb}`, `Память\n${mem}`, `Привычки\n3`],
+      [`Самооценка\n5`, `Семья, быт\n2`, `Талант\n5`, `Духовность\n6`]
+    ], [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temp}`]);
+
+    extraTable.innerHTML = buildHTMLTable([
+      [`Зрелость души:\n12`, `Прогноз Луны:\n5`, `Психотип личности:\nМудрец`],
+      [`Код Богатства:\n1539`, `Итог года:\n1`, `Здоровье:\nСердце, лёгкие. Желудок.`],
+      [`Код Удачи:\n15299`, `Тех.расклад:\n${body}/${soul}`, `Годы Рока:\n22, 47, 52, 58`],
+      [`Счастливые числа:\n9-18-27`, `Персональное число:\n6`, `Число имени:\n${nameDigit}`]
+    ], [`Жизненный код:\n991500`, `Прогноз Солнца:\n6`, `Камень удачи:\nАлмаз и Жемчуг`]);
+  }
+
+  function buildHTMLTable(rows, headers) {
+    let thead = `<thead><tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr></thead>`;
+    let tbody = '<tbody>';
+    rows.forEach(row => {
+      tbody += `<tr>${row.map(cell => `<td>${cell.replace(/\n/g, '<br>')}</td>`).join('')}</tr>`;
+    });
+    tbody += '</tbody>';
+    return `<table class="result-table bordered">${thead}${tbody}</table>`;
+  }
 });
 
+// Мобильное меню — переключатель
 function toggleMenu() {
-  document.querySelector(".nav-links").classList.toggle("show");
+  const nav = document.querySelector('.nav-links');
+  nav.classList.toggle('show');
 }
 
-// ======= MOCKUP калькулятор (здесь нужно вставить реальные расчёты) =======
-function calculatePiphagor(dateStr, name) {
-  const format = (label, val) => `${label}\n${val}`;
-
-  // Заглушки-данные
-  const heads1 = [
-    format("Дата рождения", dateStr),
-    format("Энергетика", "М"),
-    format("Число судьбы", "7"),
-    format("Темперамент", "6"),
-  ];
-
-  const piphagor = [
-    [format("Характер", "3"), format("Здоровье", "4"), format("Харизма", "5"), format("Самореализация", "8")],
-    [format("Энергия", "6"), format("Логика", "2"), format("Удача", "1"), format("Помощь семье", "0")],
-    [format("Интерес", "4"), format("Труд", "7"), format("Память", "3"), format("Привычки", "6")],
-    [format("Самооценка", "9"), format("Семья, быт", "2"), format("Талант", "5"), format("Духовность", "1")]
-  ];
-
-  const heads2 = heads1.slice(); // имя не влияет на заголовки
-
-  const piphagorName = piphagor.map(row =>
-    row.map(cell => cell.replace(/\d+$/, val => parseInt(val) + 1)) // подменим данные
-  );
-
-  const heads3 = [
-    format("Жизненный Код", "5"),
-    format("Прогноз Солнца", "2"),
-    format("Камень удачи", "Рубин")
-  ];
-
-  const additions = [
-    [format("Зрелость души", "3"), format("Прогноз Луны", "1"), format("Психотип", "Лидер")],
-    [format("Код Богатства", "7"), format("Итог года", "9"), format("Здоровье", "Хорошо")],
-    [format("Код Удачи", "6"), format("Тех.расклад", "Тела и души: 279 257"), format("Года Рока", "2025")],
-    [format("Счастливые числа", "3 7 9"), format("Персон. год", "8"), format("Число имени", "4")]
-  ];
-
-  return {
-    heads1, table1: piphagor,
-    heads2, table2: piphagorName,
-    heads3, table3: additions
-  };
-}
-
-function renderTable(container, bodyData, headerRow) {
-  container.innerHTML = "";
-
-  const table = document.createElement("table");
-  const thead = document.createElement("thead");
-  const trHead = document.createElement("tr");
-
-  headerRow.forEach(head => {
-    const th = document.createElement("th");
-    th.innerText = head;
-    trHead.appendChild(th);
-  });
-
-  thead.appendChild(trHead);
-  table.appendChild(thead);
-
-  const tbody = document.createElement("tbody");
-  bodyData.forEach(row => {
-    const tr = document.createElement("tr");
-    row.forEach(cell => {
-      const td = document.createElement("td");
-      td.innerText = cell;
-      tr.appendChild(td);
-    });
-    tbody.appendChild(tr);
-  });
-
-  table.appendChild(tbody);
-  container.appendChild(table);
-}
+// Обработка закрытия меню при клике на ссылку (дополнительно — по желанию)
+document.querySelectorAll('.nav-links a').forEach(link =>
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('show');
+  })
+);

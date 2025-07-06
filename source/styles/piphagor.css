@@ -1,97 +1,223 @@
-@import url("index.css"); /* Подключаем базовые стили сайта */
-
-/* --- Психоматрица --- */
-main.container h2,
-main.container h3 {
-  margin-bottom: 1rem;
+/* === Базовые стили страницы Пифагора === */
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: linear-gradient(#0e0e0e, #1f1f1f);
+  color: #f3f3f3;
+  padding: 40px;
 }
 
-form#piphagorForm {
-  margin-bottom: 2rem;
+/* === Навигация === */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px 30px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.5em;
+  background: none;
+  border: none;
+  color: #f8e7c1;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  align-items: flex-end;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links a {
+  color: #f8e7c1;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #e3cf9b;
+}
+
+/* === Контейнер основного содержимого === */
+main.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 1.2s ease;
+}
+
+/* === Заголовки === */
+h2, h3 {
+  text-align: center;
+  color: #f8e7c1;
+  margin-top: 40px;
+}
+
+/* === Форма === */
+form#piphagorForm {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
 }
 
 form#piphagorForm label {
-  flex: 1 1 200px;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  font-size: 1.1em;
+}
+
+form#piphagorForm input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  background: #1f1f1f;
+  color: #f3f3f3;
+  border: 1px solid #f8e7c1;
+  font-size: 1em;
 }
 
 form#piphagorForm button {
-  flex: 1 1 100%;
-  max-width: 300px;
+  align-self: center;
+  background: #f8e7c1;
+  color: #1f1f1f;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
+form#piphagorForm button:hover {
+  background: #e3cf9b;
+  transform: scale(1.03);
+}
+
+/* === Таблицы === */
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.result-table th,
+.result-table td {
+  border: 1px solid #f8e7c1;
+  padding: 12px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #e3dfd5;
+  font-size: 1em;
+}
+
+.result-table th {
+  background-color: rgba(248, 231, 193, 0.1);
+  color: #f8e7c1;
+  font-weight: bold;
+}
+
+/* === Блоки между таблицами === */
 .section-block {
   margin-top: 60px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+/* === Футер === */
+footer.container {
   text-align: center;
-  animation: fadeInUp 0.8s ease;
+  margin-top: 60px;
+  font-size: 0.9em;
+  color: #aaa;
 }
 
-table td, table th {
-  border: 1px solid #f8e7c1;
-  padding: 1rem;
-  cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.03);
-  transition: background 0.2s ease;
-  font-size: 1.1em;
+footer a {
+  color: #f8e7c1;
+  text-decoration: none;
 }
 
-table td:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+footer a:hover {
+  text-decoration: underline;
 }
 
-#decodingArea p {
-  background-color: rgba(255, 255, 255, 0.05);
-  border-left: 4px solid #f8e7c1;
-  padding: 1rem;
-  margin-top: 1rem;
-  color: #e0ddd5;
-  font-size: 1.05em;
-  line-height: 1.6;
+/* === Анимации === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Расшифровка ключевых значений */
-#keyStats {
-  margin-top: 1rem;
-  list-style: none;
-  padding-left: 0;
-  line-height: 1.7;
-}
-
-#keyStats li {
-  margin-bottom: 0.5rem;
-  color: #e0ddd5;
-  font-size: 1.1em;
-}
-
-/* --- Мобильная адаптация --- */
+/* === Мобильная адаптация === */
 @media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background-color: rgba(50, 50, 50, 0.95);
+    flex-direction: column;
+    display: none;
+    border-radius: 0 0 12px 12px;
+    z-index: 1000;
+    overflow: hidden;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  main.container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  input, button {
+    font-size: 1em;
+  }
+
+  .result-table th,
+  .result-table td {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+
   form#piphagorForm {
     flex-direction: column;
-    align-items: stretch;
-  }
-
-  form#piphagorForm label,
-  form#piphagorForm button {
-    width: 100%;
-  }
-
-  table td {
-    font-size: 1em;
-    padding: 0.8rem;
-  }
-
-  #decodingArea p {
-    font-size: 1em;
+    gap: 14px;
   }
 }
