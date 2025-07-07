@@ -140,8 +140,10 @@ form#piphagorForm button:hover {
 
 /* Нумерованные ячейки (только таблица Пифагора и с числом имени) */
 .numbered-cell {
-  background-color: rgba(255, 255, 255, 0.05);
-  color: #f8e7c1;
+  /* background-color: rgba(255, 255, 255, 0.05);
+  color: #f8e7c1; */
+  background-color: rgba(20, 20, 20, 0.9);
+  color: #e0ddd5;
   position: relative;
   text-align: center; /* 🟢 Сохраняем выравнивание текста по центру */
   vertical-align: middle;
@@ -272,10 +274,13 @@ footer a:hover {
 /* Третья таблица (Дополнения) — тёмный стиль */
 .extra-table table th {
   background-color: rgba(20, 20, 20, 0.9);
-  color: #f3f3f3;
+  color: #e0ddd5;
+  /* color: #f3f3f3; */
 }
 
 .extra-table table td {
-  background-color: rgba(40, 40, 40, 0.5);
+  background-color: rgba(20, 20, 20, 0.9);
   color: #e0ddd5;
+  /* background-color: rgba(40, 40, 40, 0.5);
+  color: #e0ddd5; */
 }

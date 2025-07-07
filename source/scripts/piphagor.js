@@ -2,12 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('piphagorForm');
   const birthdateInput = document.getElementById('birthdate');
   const nameInput = document.getElementById('yourName');
-
+// форма приёма данных
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     calculateMatrix();
   });
-
+// форма вывода значений по нажатию клавиши Энтер
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' && document.activeElement.tagName !== 'TEXTAREA') {
       e.preventDefault();
@@ -27,20 +27,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const [year, month, day] = birthdate.split('-');
     const formattedDate = `${day}.${month}.${year}`;
 
-    const digits = (day + month + year).replace(/0/g, '').split('').map(Number);
+    const digits = (day + month + year).replace(/0/g, '').split('').map(Number); // очищенная дата без нулей
     const countDigits = Array(10).fill(0);
     digits.forEach(d => countDigits[d]++);
 
     const body1 = digits.reduce((a, b) => a + b, 0);
     const body2 = body1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    const body = `${body1}${body2}`;
+    const body = `${body1}${body2}`; // тех.расклад тела
 
     const soul1 = Math.abs(body1 - digits[0] * 2);
     const soul2 = soul1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    const soul = `${soul1}${soul2}`;
+    const soul = `${soul1}${soul2}`; // тех.расклад души
 
-    const destiny = digits.reduce((a, b) => a + b, 0).toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    const temperament = countDigits.filter(n => n > 0).length;
+    const destiny = digits.reduce((a, b) => a + b, 0).toString().split('').reduce((a, b) => a + parseInt(b), 0); // чило судьбы
+    const temperament = countDigits.filter(n => n > 0).length; //темперамент
 
     const energy = countDigits[2];
     const health = countDigits[4];
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTables(formattedDate, character, energy, interest, health, logic, labor, charisma, luck, memory, destiny, temperament, body, soul, nameDigit);
   }
 
-  function renderTables(date, ch, en, in_, hl, lg, lb, cr, lk, mem, destiny, temp, body, soul, nameDigit) {
+  function renderTables(date, ch, en, in_, hl, lg, lb, cr, lk, mem, destiny, temperament, body, soul, nameDigit) {
     const matrixTable = document.getElementById('matrixTable');
     const nameMatrixTable = document.getElementById('nameMatrixTable');
     const extraTable = document.getElementById('extraTable');
@@ -83,19 +83,19 @@ document.addEventListener('DOMContentLoaded', () => {
       [`Энергия\n${en}`, `Логика\n${lg}`, `Удача\n${lk}`, `Помощь семье\n5`],
       [`Интерес\n${in_}`, `Труд\n${lb}`, `Память\n${mem}`, `Привычки\n3`],
       [`Самооценка\n5`, `Семья, быт\n2`, `Талант\n5`, `Духовность\n6`]
-    ], [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temp}`], true);
+    ], [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temperament}`], true);
 
     nameMatrixTable.innerHTML = buildHTMLTable([
       [`Характер\n${ch}`, `Здоровье\n${hl}`, `Харизма\n${cr}`, `Самореализация\n4`],
       [`Энергия\n${en}`, `Логика\n${lg}`, `Удача\n${lk}`, `Помощь семье\n5`],
       [`Интерес\n${in_}`, `Труд\n${lb}`, `Память\n${mem}`, `Привычки\n3`],
       [`Самооценка\n5`, `Семья, быт\n2`, `Талант\n5`, `Духовность\n6`]
-    ], [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temp}`], true);
+    ], [`Дата рождения\n${date}`, `Энергетика\nМ-9, Ж-3`, `Число судьбы\n${destiny}`, `Темперамент\n${temperament}`], true);
 
     extraTable.innerHTML = buildHTMLTable([
-      [`Зрелость души:\n12`, `Прогноз Луны:\n5`, `Психотип личности:\nМудрец`, `Число имени:\n${nameDigit}`],
-      [`Код Богатства:\n1539`, `Итог года:\n1`, `Здоровье:\nСердце, лёгкие. Желудок.`, `Годы Рока:\n22, 47, 52, 58`],
-      [`Код Удачи:\n15299`, `Тех.расклад Тела:\n${body}`, `Тех.расклад Души:\n${soul}`, `Персональное число:\n6`]
+      [`Код Богатства:\n1539`, `Психотип личности:\nМудрец`, `Прогноз Солнца:\n5`, `Здоровье:\nСердце, лёгкие. Желудок.`],
+      [`Код Удачи:\n15299`, `Число имени:\n${nameDigit}`, `Прогноз Луны:\n5`, `Годы Рока:\n22, 47, 52, 58`],
+      [`Тех.расклад Тела:\n${body}`, `Тех.расклад Души:\n${soul}`, `Итог года:\n1`, `Персональное\nчисло:\n6`]
     ], [`Жизненный код:\n991500`, `Счастливые числа:\n9-18-27`, `Зрелость души:\n12`, `Ваш камень удачи:\nАлмаз и Жемчуг`], false);
   }
 
