@@ -2,18 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('piphagorForm');
   const birthdateInput = document.getElementById('birthdate');
   const nameInput = document.getElementById('yourName');
-// форма приёма данных
+  // форма приёма данных
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     calculateMatrix();
   });
-// форма вывода значений по нажатию клавиши Энтер
+  // форма вывода значений по нажатию клавиши Энтер
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' && document.activeElement.tagName !== 'TEXTAREA') {
       e.preventDefault();
       calculateMatrix();
     }
   });
+
+  const [year, month, day] = birthdate.split('-');
+  const formattedDate = `${day}.${month}.${year}`;
 
   function calculateMatrix() {
     const birthdate = birthdateInput.value;
@@ -24,24 +27,82 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const [year, month, day] = birthdate.split('-');
-    const formattedDate = `${day}.${month}.${year}`;
+    function technicalLayout(inputDate) {
+      const clean = inputDate.replace(/\./g, '').replace(/0/g, '');
+      const nums = clean.split('').map(Number);
+
+      const b1 = nums.reduce((a, b) => a + b, 0).toString();
+      const b2 = (b1[1] === '0') ? b1[0] : b1.split('').reduce((a, b) => a + parseInt(b), 0).toString();
+      const body = b1 + b2;
+
+      const s1 = Math.abs(parseInt(b1) - nums[0] * 2).toString();
+      const s2 = (s1.length === 1) ? '0' + s1 : s1.split('').reduce((a, b) => a + parseInt(b), 0).toString();
+      const soul = s1 + s2;
+
+      return { cleanedDate: clean, body, soul };
+    }
+
+    const total_numbers = technicalLayout(formattedDate);  // formattedDate = "дд.мм.гггг"
+    const body_soul = [total_numbers.body, total_numbers.soul];
+
+    // Получаем тех.расклад body и soul
+    const [body, soul] = body_soul;
+    function calculateTablePiphagor(totalNumbers) {
+      const { cleanedDate, body, soul } = totalNumbers;
+      const total = cleanedDate + body + soul;
+      const result = {};
+
+      for (let i = 1; i <= 9; i++) {
+        const strI = i.toString();
+        const count = total.split('').filter(char => char === strI).length;
+        result[strI] = count > 0 ? strI.repeat(count) : '';
+      }
+
+      return result;
+    }
+
+    function calculateTablePiphagorWithName(totalNumbers, countName) {
+      const { cleanedDate, body, soul } = totalNumbers;
+      const total = cleanedDate + body + soul + countName;
+      const result = {};
+
+      for (let i = 1; i <= 9; i++) {
+        const strI = i.toString();
+        const count = total.split('').filter(char => char === strI).length;
+        result[strI] = count > 0 ? strI.repeat(count) : '';
+      }
+
+      return result;
+    }
+
+    const dictTable = calculateTablePiphagor(totalNumbers);
+    const listTable = Object.values(dictTable);
+
+    const nameDictTable = calculateTablePiphagorWithName(totalNumbers, nameDigit.toString());
+    const nameListTable = Object.values(nameDictTable);
+
+    function calculateReincarnation(listTable) {
+      const totalStr = listTable.filter(x => x !== '-').join('');
+      const count = totalStr.length;
+      return count;
+    }
+
+    const reincarnation = calculateReincarnation(listTable)
+
+    function numberDestiny(formattedDate) {
+      const clean = inputDate.replace(/\./g, '').replace(/0/g, '');
+      const num = clean.split('').reduce((sum, d) => sum + parseInt(d), 0);
+      const result = num < 10 ? num : ((num - 1) % 9) + 1;
+      return result.toString();
+    }
+
 
     const digits = (day + month + year).replace(/0/g, '').split('').map(Number); // очищенная дата без нулей
     const countDigits = Array(10).fill(0);
     digits.forEach(d => countDigits[d]++);
+    const destiny = numberDestiny(formattedDate); // верный способ
 
-    const body1 = digits.reduce((a, b) => a + b, 0);
-    const body2 = body1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    const body = `${body1}${body2}`; // тех.расклад тела
-
-    const soul1 = Math.abs(body1 - digits[0] * 2);
-    const soul2 = soul1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    const soul = `${soul1}${soul2}`; // тех.расклад души
-
-    const destiny = digits.reduce((a, b) => a + b, 0).toString().split('').reduce((a, b) => a + parseInt(b), 0); // чило судьбы
     const temperament = countDigits.filter(n => n > 0).length; //темперамент
-
     const energy = countDigits[2];
     const health = countDigits[4];
     const interest = countDigits[6];
