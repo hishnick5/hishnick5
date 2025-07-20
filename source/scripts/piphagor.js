@@ -463,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const val = digits.replace(/\D/g, '') || '0';
       td.style.cursor = 'pointer';
       td.addEventListener('click', () => {
-        window.open(`source/psicho/${cellNum}/${val}.txt`, '_blank');
+        openModalWithFile(`source/psicho/${cellNum}/${val}.txt`, '_blank');
       });
     });
 
@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const bodyVal = bodyCell.innerText.split('\n')[1] || '0';
       bodyCell.style.cursor = 'pointer';
       bodyCell.addEventListener('click', () => {
-        window.open(`source/bodysoul/${bodyVal}.txt`, '_blank');
+        openModalWithFile(`source/bodysoul/${bodyVal}.txt`, '_blank');
       });
     }
 
@@ -483,7 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const soulVal = soulCell.innerText.split('\n')[1] || '0';
       soulCell.style.cursor = 'pointer';
       soulCell.addEventListener('click', () => {
-        window.open(`source/bodysoul/${soulVal}.txt`, '_blank');
+        openModalWithFile(`source/bodysoul/${soulVal}.txt`, '_blank');
       });
     }
 
@@ -493,19 +493,57 @@ document.addEventListener('DOMContentLoaded', () => {
       const totalVal = totalCell.innerText.split('\n')[1] || '0';
       totalCell.style.cursor = 'pointer';
       totalCell.addEventListener('click', () => {
-        window.open(`source/sunmoon/${totalVal}.txt`, '_blank');
+        openModalWithFile(`source/sunmoon/${totalVal}.txt`, '_blank');
       });
     }
 
     // Дополнения: персональное число
-    const forecastCell = [...document.querySelectorAll('#extraTable td')].find(td => td.innerText.includes('Персональное'));
+    const forecastCell = [...document.querySelectorAll('#extraTable td')]
+      .find(td => td.innerText.includes('Персональное'));
     if (forecastCell) {
-      const forecastVal = forecastCell.innerText.split('\n')[1] || '0';
+      // Берём весь текст ячейки
+      const cellText = forecastCell.innerText;
+      // Извлекаем только цифры
+      const forecastVal = cellText.replace(/\D/g, '') || '0';
+
       forecastCell.style.cursor = 'pointer';
       forecastCell.addEventListener('click', () => {
-        window.open(`source/persyear/${forecastVal}.txt`, '_blank');
+        openModalWithFile(`source/persyear/${forecastVal}.txt`);
       });
     }
+
+
+  };
+
+  // === Модальное окно ===
+  const modal = document.getElementById('modal');
+  const modalText = document.getElementById('modalText');
+  const modalClose = document.querySelector('.modal-close');
+
+  // закрыть модал
+  modalClose.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  // клик вне модалки — тоже закрыть
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  // функция для загрузки текста и показа
+  function openModalWithFile(path) {
+    fetch(path)
+      .then(res => res.text())
+      .then(text => {
+        modalText.textContent = text;
+        modal.style.display = 'block';
+      })
+      .catch(err => {
+        modalText.textContent = 'Ошибка загрузки файла';
+        modal.style.display = 'block';
+      });
   }
 
 }); // конец DOMContentLoaded
