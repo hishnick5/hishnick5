@@ -389,15 +389,26 @@ document.addEventListener('DOMContentLoaded', () => {
     return `<div class="cell-number">${number}</div>${cellText.replace(/\n/g, '<br>')}`;
   }
 
+  const cellNumberMap = [
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9]
+  ];
+
   function buildHTMLTable(rows, headers, addNumbers = false) {
     let thead = `<thead><tr>${headers.map(h => `<th>${h.replace(/\n/g, '<br>')}</th>`).join('')}</tr></thead>`;
     let tbody = '<tbody>';
     rows.forEach((row, rowIndex) => {
       tbody += '<tr>';
       row.forEach((cell, colIndex) => {
+        // 👉 нумеруем только 3 первых строки и 3 первых колонки
         if (addNumbers && rowIndex < 3 && colIndex < 3) {
-          const number = rowIndex * 3 + colIndex + 1;
-          tbody += `<td class="numbered-cell">${addCellNumber(cell, number)}</td>`;
+          const number = cellNumberMap[rowIndex][colIndex];
+          const [label, value] = cell.split('\n');
+          const cleanVal = (value || '').replace(/\D/g, '') || '0';
+          tbody += `<td class="numbered-cell" data-val="${cleanVal}">
+          ${addCellNumber(label + '<br>' + (value || ''), number)}
+        </td>`;
         } else {
           tbody += `<td>${cell.replace(/\n/g, '<br>')}</td>`;
         }
