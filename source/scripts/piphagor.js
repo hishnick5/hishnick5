@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', () => {
       [`Код Богатства:\n${rich}`, `Ваш камень удачи:\n${stone}`, `Прогноз Солнца:\n${sun}`, `Здоровье:\n${healthDescription}`],
       [`Код Удачи:\n${fortune}`, `Число имени:\n${nameDigit}`, `Прогноз Луны:\n${luna}`, `Годы Рока:\n${fatefulYear}`],
       [`Тех.расклад Тела:\n${body}`, `Тех.расклад Души:\n${soul}`, `Итог года:\n${total}`, `Персональное\nчисло:\n${forecastYear}`]
-    ], [`Жизненный код:\n${lifeCode}`, `Счастливые числа:\n${luckie}`, `Зрелость души:\n${reincarnation}`, `Психотип личности:\n${lifeCodeValue}`], false);
+    ], [`Счастливые числа:\n${luckie}`, `Жизненный код:\n${lifeCode}`, `Зрелость души:\n${reincarnation}`, `Психотип личности:\n${lifeCodeValue}`], false);
 
     // 👉 таблица поведения
     behaviorTable.innerHTML = buildHTMLTable(
