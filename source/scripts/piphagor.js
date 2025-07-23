@@ -192,6 +192,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }[destiny];
   }
 
+  function calculateColor(destiny) {
+    return {
+      '1': 'Красный',
+      '2': 'Оранжевый',
+      '3': 'Желтый',
+      '4': 'Зеленый',
+      '5': 'Бирюзовый',
+      '6': 'Синий',
+      '7': 'Фиолетовый',
+      '8': 'Розовый',
+      '9': 'Белый'
+    }[destiny];
+  }
+
   function calculationRichiCode(formattedDate) {
     function reduceNumber(n) {
       n = String(n);
@@ -357,6 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fatefulYear = calculateFatefulYear(lifeCode);
     const forecastYear = calculateForecastYear(formattedDate, inputYear);
     const stone = calculateStone(destiny);
+    const luckie_Color = calculateColor(destiny);
     const healthDescription = calculateHealth(lifeCode);
     const codeBehaviour = calculateCodeBehaviour(dayMonth);
     const lifeCodeValue = getLifeCodeValue(lifeCode);
@@ -375,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
       realization, helpingTheFamily, habits, selfAssessment, familyLife,
       talent, spirituality, maleFemale, rich, fortune, sun, luna,
       total, forecastYear, lifeCode, luckie, reincarnation, lifeCodeValue,
-      stone, fatefulYear, healthDescription,
+      stone, luckie_Color, fatefulYear, healthDescription,
       listTableWithName // 👈 передаём отдельный массив для второй таблицы
     );
     makeCellsClickable();
@@ -425,7 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
     realization, helpingTheFamily, habits, selfAssessment, familyLife,
     talent, spirituality, maleFemale, rich, fortune, sun, luna,
     total, forecastYear, lifeCode, luckie, reincarnation, lifeCodeValue,
-    stone, fatefulYear, healthDescription,
+    stone, luckie_Color, fatefulYear, healthDescription,
     listTableWithName
   ) {
     const matrixTable = document.getElementById('matrixTable');
@@ -447,16 +462,16 @@ document.addEventListener('DOMContentLoaded', () => {
       [`Энергия\n${listTableWithName[1]}`, `Логика\n${listTableWithName[4]}`, `Удача\n${listTableWithName[7]}`, `Помощь семье\n${helpingTheFamily}`],
       [`Интерес\n${listTableWithName[2]}`, `Труд\n${listTableWithName[5]}`, `Память\n${listTableWithName[8]}`, `Привычки\n${habits}`],
       [`Самооценка\n${selfAssessment}`, `Семья, быт\n${familyLife}`, `Талант\n${talent}`, `Духовность\n${spirituality}`]
-    ], [`Дата рождения\n${date}`, `Энергетика\n${maleFemale}`, `Число судьбы\n${destiny}`, `Темперамент\n${temperament}`], true);
+    ], [`Число имени\n${nameDigit}`, `Энергетика\n${maleFemale}`, `Число судьбы\n${destiny}`, `Темперамент\n${temperament}`], true);
 
     // 👉 таблица дополнений
     extraTable.innerHTML = buildHTMLTable([
-      [`Код Богатства:\n${rich}`, `Ваш камень удачи:\n${stone}`, `Прогноз Солнца:\n${sun}`, `Здоровье:\n${healthDescription}`],
-      [`Код Удачи:\n${fortune}`, `Число имени:\n${nameDigit}`, `Прогноз Луны:\n${luna}`, `Годы Рока:\n${fatefulYear}`],
+      [`Код Богатства:\n${rich}`, `Камень удачи:\n${stone}`, `Прогноз Солнца:\n${sun}`, `Внимание по здоровью:\n${healthDescription}`],
+      [`Код Удачи:\n${fortune}`, `Цвет удачи:\n${luckie_Color}`, `Прогноз Луны:\n${luna}`, `Годы Рока:\n${fatefulYear}`],
       [`Тех.расклад Тела:\n${body}`, `Тех.расклад Души:\n${soul}`, `Итог года:\n${total}`, `Персональное\nчисло:\n${forecastYear}`]
     ], [`Счастливые числа:\n${luckie}`, `Жизненный код:\n${lifeCode}`, `Зрелость души:\n${reincarnation}`, `Психотип личности:\n${lifeCodeValue}`], false);
 
-    // 👉 таблица поведения
+    // 👉 таблица код поведения
     behaviorTable.innerHTML = buildHTMLTable(
       [[codeBehaviour]],
       ['Код поведения по дате рождения'],
