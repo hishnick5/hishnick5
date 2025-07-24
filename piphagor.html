@@ -3,87 +3,72 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Психоматрица Пифагора</title>
   <link rel="stylesheet" href="source/styles/piphagor.css" />
 </head>
 
 <body>
-  <!-- Навигация -->
   <nav class="navbar">
     <div class="nav-container">
       <button class="nav-toggle" onclick="toggleMenu()">☰</button>
       <ul class="nav-links">
         <li><a href="index.html">Главная</a></li>
-        <li><a href="karmik_table.html">Кармическая матрица</a></li>
+        <li><a href="karmik_table.html">Таблица Кармическая</a></li>
+        <li><a href="compatibility.html">Совместимость по Кармической</a></li>
+        <li><a href="predict.html">Прогнозы на год,месяц,день</a></li>
         <li><a href="financial_schedule.html">Финансовый график</a></li>
-        <li><a href="compatibility.html">Совместимость</a></li>
-        <li><a href="predict.html">Прогнозы</a></li>
-        <li><a href="piphagor.html">Психоматрица</a></li>
-        <li><a href="piph_compat.html">Совместимость по Пифагору</a></li>
+        <li><a href="piphagor.html">Таблица Пифагора</a></li>
+        <li><a href="piph_compat.html" class="active">Совместимость по Пифагору</a></li>
       </ul>
     </div>
   </nav>
 
-  <div class="full-width-block">
-    <!-- Блок: Ввод данных -->
-    <div class="container">
-      <h2>Психоматрица Пифагора</h2>
-      <form id="piphagorForm">
-        <label>Дата рождения:
-          <input type="date" id="birthdate" required />
-        </label>
-        <label>Ваше имя:
-          <input type="text" id="yourName" placeholder="например: Алексей" required />
-        </label>
-        <button type="submit">📌 Рассчитать психоматрицу</button>
-      </form>
-    </div>
+  <main class="container">
+    <h2>🔠 Таблица Пифагора</h2>
 
-    <!-- Блок: Таблица Пифагора -->
-    <div class="container">
+    <form id="piphagorForm">
+      <label>Дата рождения:
+        <input type="date" id="birthdate" required />
+      </label>
+      <label>Ваше имя:
+        <input type="text" id="yourName" placeholder="например: Алексей" required />
+      </label>
+      <button type="submit">📌 Рассчитать психоматрицу</button>
+    </form>
+
+    <section class="section-block">
       <h3>Таблица Пифагора</h3>
       <table id="matrixTable"></table>
-    </div>
+    </section>
 
-    <!-- Блок: Таблица Пифагора + Число имени -->
-    <div class="container">
+    <section class="section-block">
       <h3>Таблица Пифагора + Число имени</h3>
       <table id="nameMatrixTable"></table>
-    </div>
+    </section>
 
-    <!-- Блок: Прогнозируемый год -->
-    <div class="container">
+    <!-- 🔽 Строка ввода inputYear для таблицы "Дополнения" -->
+    <section class="section-block">
       <label for="inputYear">Введите прогнозируемый год:</label>
       <input type="number" id="inputYear" min="1900" max="2100" />
-    </div>
+    </section>
 
-    <!-- Блок: Дополнения -->
-    <div class="container">
+    <section class="section-block">
       <h3>Дополнения</h3>
       <div id="extraTable" class="extra-table"></div>
-    </div>
+    </section>
 
-    <!-- Блок: Код поведения -->
-    <div class="container">
+    <section class="section-block">
       <h3>Код поведения</h3>
       <div id="behaviourTable"></div>
-    </div>
-  </div>
+    </section>
+  </main>
 
-  <!-- Футер -->
   <footer class="container">
     <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
   </footer>
 
-  <!-- Модальное окно -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="modal-close">&times;</span>
-      <div id="modalText">Здесь будет текст...</div>
-    </div>
-  </div>
-
+  <!-- 🔽 Автозаполнение inputYear текущим годом -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const inputYear = document.getElementById('inputYear');
@@ -91,10 +76,14 @@
         inputYear.value = new Date().getFullYear();
       }
     });
-    function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('show');
-    }
   </script>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <div id="modalText">Здесь будет текст...</div>
+    </div>
+  </div>
 
   <script src="source/scripts/zodiac_descriptions.js"></script>
   <script src="source/scripts/piphagor.js"></script>

@@ -43,23 +43,32 @@ function calculateLifeCode(formattedDate) {
 
 // ===== Рендер по схеме [1,4,7],[2,5,8],[3,6,9] =====
 function buildTable(dictTable) {
+  const labels = {
+    '1': 'Характер',
+    '2': 'Энергия',
+    '3': 'Интерес',
+    '4': 'Здоровье',
+    '5': 'Логика',
+    '6': 'Труд',
+    '7': 'Харизма',
+    '8': 'Удача',
+    '9': 'Память'
+  };
+
+  function cellHTML(key) {
+    return `
+      <td>
+        <div class="cell-label">${labels[key]}</div>
+        <div class="cell-value">${dictTable[key] || ''}</div>
+      </td>
+    `;
+  }
+
   return `
     <table class="result-table fixed-layout">
-      <tr>
-        <td>${dictTable['1']}</td>
-        <td>${dictTable['4']}</td>
-        <td>${dictTable['7']}</td>
-      </tr>
-      <tr>
-        <td>${dictTable['2']}</td>
-        <td>${dictTable['5']}</td>
-        <td>${dictTable['8']}</td>
-      </tr>
-      <tr>
-        <td>${dictTable['3']}</td>
-        <td>${dictTable['6']}</td>
-        <td>${dictTable['9']}</td>
-      </tr>
+      <tr>${cellHTML('1')}${cellHTML('4')}${cellHTML('7')}</tr>
+      <tr>${cellHTML('2')}${cellHTML('5')}${cellHTML('8')}</tr>
+      <tr>${cellHTML('3')}${cellHTML('6')}${cellHTML('9')}</tr>
     </table>
   `;
 }
@@ -102,20 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const lifeCompat = numberDestiny(Math.abs(maleLife - femaleLife).toString());
 
     compatMatrix.innerHTML = `
-      <table class="result-table fixed-layout">
-        <thead>
-          <tr>
-            <th>Совместимость по числу судьбы</th>
-            <th>Совместимость по жизненному коду</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>${destinyCompat}</td>
-            <td>${lifeCompat}</td>
-          </tr>
-        </tbody>
-      </table>
-    `;
+  <table class="result-table fixed-layout compat-table">
+    <tr>
+      <td>
+        <div class="cell-label">Совместимость по числу судьбы</div>
+        <div class="cell-value">${destinyCompat}</div>
+      </td>
+      <td>
+        <div class="cell-label">Совместимость по жизненному коду</div>
+        <div class="cell-value">${lifeCompat}</div>
+      </td>
+    </tr>
+  </table>
+`;
+
   });
 });

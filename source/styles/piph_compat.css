@@ -15,11 +15,13 @@ body {
   margin-bottom: 30px;
   position: relative;
 }
+
 .nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .nav-toggle {
   display: none;
   font-size: 1.5em;
@@ -28,6 +30,7 @@ body {
   color: #f8e7c1;
   cursor: pointer;
 }
+
 .nav-links {
   list-style: none;
   display: flex;
@@ -35,15 +38,18 @@ body {
   padding: 0;
   margin: 0;
 }
+
 .nav-links li {
   margin: 0 10px;
 }
+
 .nav-links a {
   color: #f8e7c1;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;
 }
+
 .nav-links a:hover {
   color: #e3cf9b;
 }
@@ -74,10 +80,12 @@ form#compatForm {
   gap: 16px;
   align-items: flex-start;
 }
+
 form#compatForm label {
   width: 100%;
   font-size: 1.1em;
 }
+
 form#compatForm input {
   width: 100%;
   padding: 10px;
@@ -88,6 +96,7 @@ form#compatForm input {
   border: 1px solid #f8e7c1;
   font-size: 1em;
 }
+
 form#compatForm button {
   align-self: center;
   background: #f8e7c1;
@@ -99,6 +108,7 @@ form#compatForm button {
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
+
 form#compatForm button:hover {
   background: #e3cf9b;
   transform: scale(1.03);
@@ -110,68 +120,83 @@ form#compatForm button:hover {
   border-collapse: collapse;
   margin-top: 20px;
 }
-.result-table td,
-.result-table th {
+
+.result-table td {
   border: 1px solid #f8e7c1;
-  padding: 8px;
+  padding: 6px 8px;
   text-align: center;
   vertical-align: top;
   background-color: rgba(255, 255, 255, 0.03);
   color: #e3dfd5;
-  font-size: 0.95em;
-  line-height: 1.3em;
+  font-size: 0.9em;
+  line-height: 1.2em;
 }
 
-/* Фиксированная ширина ячеек и компактный вид */
+
 .fixed-layout {
   table-layout: fixed;
   width: 100%;
 }
-.fixed-layout td,
-.fixed-layout th {
+
+.fixed-layout td {
   word-wrap: break-word;
   white-space: pre-line;
 }
 
-/* Нумерованные ячейки */
-.numbered-cell {
-  position: relative;
-  padding: 6px;
-  vertical-align: top;
-}
-.cell-number {
-  position: absolute;
-  top: 4px;
-  left: 6px;
-  font-size: 0.75em;
-  color: #aaa;
-  font-weight: bold;
-}
-.cell-value {
-  font-size: 1.1em;
-  margin-top: 10px;
-  word-break: break-word;
-  color: #f8e7c1;
-}
+/* === Внутреннее оформление ячеек === */
 .cell-label {
-  margin-top: 4px;
-  font-size: 0.8em;
+  font-size: 1.1em;
   color: #ccc;
-  word-break: break-word;
+  margin-bottom: 4px;
+  line-height: 1.1em;
 }
+
+.cell-value {
+  font-size: 1.4em;
+  color: #f8e7c1;
+  line-height: 1.2em;
+}
+
+/* ====== Специальная высота для таблиц Мужчины и Женщины ====== */
+.male-table td .cell-label,
+.male-table td .cell-value,
+.female-table td .cell-label,
+.female-table td .cell-value {
+  line-height: 0.1em;/* компактная высота */
+}
+
+/* ====== Увеличенный размер для таблицы Результат совместимости ====== */
+.compat-table td .cell-label {
+  font-size: 1.2em;
+  color: #ccc;
+  margin-bottom: 6px;
+  line-height: 0.1em;
+}
+.compat-table td .cell-value {
+  font-size: 1.8em;
+  color: #f8e7c1;
+  line-height: 0.1em;
+}
+.compat-table td {
+  padding: 10px 8px;
+}
+
+
 
 /* === Footer === */
 footer.container {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 40px;
   font-size: 0.9em;
   color: #aaa;
   padding: 10px 0;
 }
+
 footer a {
   color: #f8e7c1;
   text-decoration: none;
 }
+
 footer a:hover {
   text-decoration: underline;
 }
@@ -182,6 +207,7 @@ footer a:hover {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -193,45 +219,31 @@ footer a:hover {
   body {
     padding: 20px;
   }
-  .nav-toggle {
-    display: block;
-  }
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100vw;
-    background-color: rgba(50, 50, 50, 0.95);
-    flex-direction: column;
-    display: none;
-    border-radius: 0 0 12px 12px;
-    z-index: 1000;
-    overflow: hidden;
-  }
-  .nav-links.show {
-    display: flex;
-  }
-  .nav-links li {
-    margin: 10px 0;
-    text-align: center;
-  }
-  main.container {
-    padding: 15px;
-  }
-  h2 {
-    font-size: 1.6em;
-  }
-  input,
-  button {
-    font-size: 1em;
-  }
-  .result-table td,
-  .result-table th {
-    font-size: 0.9em;
-    padding: 6px;
-  }
+
   form#compatForm {
-    flex-direction: column;
-    gap: 14px;
+    gap: 12px;
+  }
+
+  form#compatForm input {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+
+  form#compatForm button {
+    font-size: 0.9em;
+    padding: 8px 18px;
+  }
+
+  .result-table td {
+    font-size: 0.8em;
+    padding: 4px 6px;
+  }
+
+  .cell-label {
+    font-size: 0.75em;
+  }
+
+  .cell-value {
+    font-size: 0.95em;
   }
 }

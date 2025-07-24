@@ -4,14 +4,7 @@ body {
   font-family: 'Georgia', serif;
   background: linear-gradient(#0e0e0e, #1f1f1f);
   color: #f3f3f3;
-  padding: 0;
-}
-
-/* Контейнер центрального контента */
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 20px; /* горизонтальные отступы */
+  padding: 40px;
 }
 
 /* === Навигация === */
@@ -61,17 +54,28 @@ body {
   color: #e3cf9b;
 }
 
+/* === Контейнер основного содержимого === */
+main.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 1.2s ease;
+}
+
 /* === Заголовки === */
-h2, h3 {
+h2,
+h3 {
   text-align: center;
   color: #f8e7c1;
-  margin: 0;           /* убрали margin для отсутствия зазоров */
-  padding: 10px 0;     /* внутренний отступ */
+  margin-top: 40px;
 }
 
 /* === Форма === */
 form#piphagorForm {
-  margin-top: 0;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -112,42 +116,42 @@ form#piphagorForm button:hover {
 }
 
 /* === Таблицы === */
-table {
+.result-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 0; /* убран margin чтобы фон был слитный */
+  margin-top: 20px;
 }
 
-table th, table td {
+.result-table th,
+.result-table td {
   border: 1px solid #f8e7c1;
-  padding: 10px;
+  padding: 12px;
   text-align: center;
-  white-space: pre-line;
+  vertical-align: middle;
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #e3dfd5;
+  font-size: 1em;
 }
 
-table th {
+.result-table th {
   background-color: rgba(248, 231, 193, 0.1);
   color: #f8e7c1;
   font-weight: bold;
 }
 
-table td {
-  background-color: rgba(255, 255, 255, 0.03);
-  color: #e3dfd5;
-}
-
-/* Нумерованные ячейки */
+/* Нумерованные ячейки (только таблица Пифагора и с числом имени) */
 .numbered-cell {
+  /* background-color: rgba(255, 255, 255, 0.05);
+  color: #f8e7c1; */
   background-color: rgba(20, 20, 20, 0.9);
   color: #e0ddd5;
   position: relative;
   text-align: center;
+  /* 🟢 Сохраняем выравнивание текста по центру */
   vertical-align: middle;
-  cursor: pointer;
 }
-.numbered-cell:hover {
-  background-color: rgba(248, 231, 193, 0.2);
-}
+
+/* Маленький номер в левом верхнем углу */
 .cell-number {
   position: absolute;
   top: 6px;
@@ -158,45 +162,143 @@ table td {
   pointer-events: none;
 }
 
-/* Таблица Дополнения */
+/* Ячейки-заголовки внутри тела таблицы */
+.table-header-cell {
+  background-color: rgba(248, 231, 193, 0.1);
+  color: #f8e7c1;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  border: 1px solid #f8e7c1;
+  padding: 10px;
+  text-align: center;
+  white-space: pre-line;
+}
+
+table th {
+  background-color: rgba(248, 231, 193, 0.1);
+  color: #f8e7c1;
+}
+
+
+/* === Блоки между таблицами === */
+.section-block {
+  margin-top: 60px;
+}
+
+/* === Футер === */
+footer.container {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+footer a {
+  color: #f8e7c1;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* === Анимации === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Мобильная адаптация === */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background-color: rgba(50, 50, 50, 0.95);
+    flex-direction: column;
+    display: none;
+    border-radius: 0 0 12px 12px;
+    z-index: 1000;
+    overflow: hidden;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  main.container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+  }
+
+  input,
+  button {
+    font-size: 1em;
+  }
+
+  .result-table th,
+  .result-table td {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+
+  form#piphagorForm {
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+/* Третья таблица (Дополнения) — тёмный стиль */
 .extra-table table th {
   background-color: rgba(20, 20, 20, 0.9);
   color: #e0ddd5;
-  font-weight: normal;
+  /* color: #f3f3f3; */
 }
+
 .extra-table table td {
   background-color: rgba(20, 20, 20, 0.9);
   color: #e0ddd5;
+  /* background-color: rgba(40, 40, 40, 0.5);
+  color: #e0ddd5; */
 }
-
-/* Таблица Код поведения */
-#behaviourTable table th,
-#behaviourTable table td {
-  background-color: rgba(20, 20, 20, 0.9);
-  color: #e0ddd5;
-  font-weight: normal;
-}
-
-/* === Фон блоков на всю ширину === */
-.full-width-block {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  background: rgba(255,255,255,0.05);
-  box-shadow: 0 0 20px rgba(255,255,255,0.1);
-  padding: 0; /* убрали padding сверху и снизу */
-}
-
-/* добавляем отступы внутри контейнера, чтобы текст не прилипал */
-.full-width-block .container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 30px 20px; /* внутренние отступы */
-}
-
 
 /* === Модальное окно === */
 .modal {
   display: none;
+  /* по умолчанию скрыто */
   position: fixed;
   z-index: 9999;
   left: 0;
@@ -207,6 +309,7 @@ table td {
   background: rgba(0, 0, 0, 0.8);
   animation: fadeIn 0.3s ease;
 }
+
 .modal-content {
   background-color: #1f1f1f;
   margin: 5% auto;
@@ -219,6 +322,7 @@ table td {
   white-space: pre-line;
   box-shadow: 0 0 30px rgba(248, 231, 193, 0.3);
 }
+
 .modal-close {
   color: #f8e7c1;
   float: right;
@@ -226,51 +330,7 @@ table td {
   font-weight: bold;
   cursor: pointer;
 }
+
 .modal-close:hover {
   color: #fff3d0;
-}
-
-/* === Футер === */
-footer.container {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 0.9em;
-  color: #aaa;
-}
-footer a {
-  color: #f8e7c1;
-  text-decoration: none;
-}
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* === Анимация === */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* === Мобильная адаптация === */
-@media (max-width: 768px) {
-  .container { padding: 20px; }
-  .nav-toggle { display: block; }
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100vw;
-    background-color: rgba(50,50,50,0.95);
-    flex-direction: column;
-    display: none;
-    border-radius: 0 0 12px 12px;
-    z-index: 1000;
-    overflow: hidden;
-  }
-  .nav-links.show { display: flex; }
-  .nav-links li { margin: 10px 0; text-align: center; }
-  h2 { font-size: 1.6em; }
-  input, button { font-size: 1em; }
-  .result-table th, .result-table td { font-size: 0.9em; padding: 8px; }
-  form#piphagorForm { flex-direction: column; gap: 14px; }
 }
