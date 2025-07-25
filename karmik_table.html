@@ -6,24 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Расчёт Кармической Матрицы</title>
   <link rel="stylesheet" href="source/styles/karmik_table.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <button class="nav-toggle" onclick="toggleMenu()">☰</button>
-      <ul class="nav-links">
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="karmik_table.html">Таблица Кармическая</a></li>
-        <li><a href="compatibility.html">Совместимость по Кармической</a></li>
-        <li><a href="predict.html">Прогнозы на год,месяц,день</a></li>
-        <li><a href="financial_schedule.html">Финансовый график</a></li>
-        <li><a href="piphagor.html">Таблица Пифагора</a></li>
-        <li><a href="piph_compat.html" class="active">Совместимость по Пифагору</a></li>
-      </ul>
-    </div>
+
+  <!-- 🔥 Off‑canvas панель -->
+  <nav class="sidebar">
+    <div class="logo">Меню</div>
+    <ul>
+      <li><a href="index.html"><i class="fa fa-home"></i>Главная</a></li>
+      <li><a href="karmik_table.html" class="active"><i class="fa fa-table"></i>Таблица Кармическая</a></li>
+      <li><a href="compatibility.html"><i class="fa fa-heart"></i>Совместимость по Кармической</a></li>
+      <li><a href="predict.html"><i class="fa fa-calendar"></i>Прогнозы на год, месяц, день</a></li>
+      <li><a href="financial_schedule.html"><i class="fa fa-chart-line"></i>Финансовый график</a></li>
+      <li><a href="piphagor.html"><i class="fa fa-square-root-alt"></i>Таблица Пифагора</a></li>
+      <li><a href="piph_compat.html"><i class="fa fa-user-friends"></i>Совместимость по Пифагору</a></li>
+    </ul>
   </nav>
 
+  <!-- 🔥 Кнопка-бургер -->
+  <button class="burger-btn" onclick="toggleSidebar()">☰</button>
+
+  <!-- ✅ Твой основной контент (не изменён) -->
   <main class="container">
     <h2>🔢 Расчёт Кармической Матрицы</h2>
     <h3>Введите дату рождения и получите значения</h3>
@@ -51,6 +56,18 @@
   <footer class="container">
     <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const current = window.location.pathname.split('/').pop();
+      document.querySelectorAll('.sidebar a').forEach(link => {
+        if (link.getAttribute('href') === current) link.classList.add('active');
+      });
+    });
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('open');
+    }
+  </script>
 
   <script src="source/scripts/karmik_table.js"></script>
 </body>

@@ -6,63 +6,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Нумерология | Узнай свою историю</title>
   <link rel="stylesheet" href="source/styles/index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <button class="nav-toggle" onclick="toggleMenu()">☰</button>
-      <ul class="nav-links">
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="karmik_table.html">Таблица Кармическая</a></li>
-        <li><a href="compatibility.html">Совместимость по Кармической</a></li>
-        <li><a href="predict.html">Прогнозы на год,месяц,день</a></li>
-        <li><a href="financial_schedule.html">Финансовый график</a></li>
-        <li><a href="piphagor.html">Таблица Пифагора</a></li>
-        <li><a href="piph_compat.html" class="active">Совместимость по Пифагору</a></li>
-      </ul>
-    </div>
+
+  <!-- 🔥 Off‑canvas панель -->
+  <nav class="sidebar">
+    <div class="logo">Меню</div>
+    <ul>
+      <li><a href="index.html" class="active"><i class="fa fa-home"></i>Главная</a></li>
+      <li><a href="karmik_table.html"><i class="fa fa-table"></i>Таблица Кармическая</a></li>
+      <li><a href="compatibility.html"><i class="fa fa-heart"></i>Совместимость по Кармической</a></li>
+      <li><a href="predict.html"><i class="fa fa-calendar"></i>Прогнозы на год,месяц,день</a></li>
+      <li><a href="financial_schedule.html"><i class="fa fa-chart-line"></i>Финансовый график</a></li>
+      <li><a href="piphagor.html"><i class="fa fa-square-root-alt"></i>Таблица Пифагора</a></li>
+      <li><a href="piph_compat.html"><i class="fa fa-user-friends"></i>Совместимость по Пифагору</a></li>
+    </ul>
   </nav>
 
+  <!-- 🔥 Кнопка-бургер -->
+  <button class="burger-btn" onclick="toggleSidebar()">☰</button>
+
+  <!-- ✅ основной контент страницы -->
   <main class="container">
     <h1>🌙 Твоя дата рождения — не случайность, а зашифрованное послание Вселенной</h1>
-
-    <p>В тот самый момент, когда ты сделал(а) первый вдох, <br>
-      космос оставил на тебе отпечаток — не видимый глазу, но звучащий внутри.</p>
-
-    <p>🔹 Это была не просто дата. <br>
-      Это была <strong>космическая метка</strong>, открывающая путь.<br>
-      В ней зашифрованы: <br>
-      — твои силы и слабости, <br>
-      — твои узоры судьбы и петли кармы, <br>
-      — твои таланты и вызовы.</p>
-
-    <p>📜 Я читаю эти метки. <br>
-      Профессионально, бережно, без догадок. <br>
-      Как сказочник, перевожу язык чисел в образы и смыслы. <br>
-      Чтобы ты увидел(а) себя — настоящего(ую).<br>
-      Без масок. Без шаблонов.</p>
-
-    <p>✨ Что ждёт тебя за поворотом? <br>
-      Где твоя внутренняя сила дремлет? <br>
-      Почему повторяются одни и те же уроки?</p>
-
-    <p>🔮 Ответ уже внутри твоей даты рождения. <br>
-      Хочешь — я расскажу тебе и ты узнаешь.</p>
-
-    <p style="text-align:center; margin-top: 10px;">
-      👇 Оставь свою дату — и я расскажу тебе то, что ты всегда чувствовал(а), но не мог(ла) объяснить.
+    <p>В тот самый момент, когда ты сделал(а) первый вдох, <br>космос оставил на тебе отпечаток — не видимый глазу, но
+      звучащий внутри.</p>
+    <p>🔹 Это была не просто дата. <br>Это была <strong>космическая метка</strong>, открывающая путь.<br>В ней
+      зашифрованы: <br>— твои силы и слабости, <br>— твои узоры судьбы и петли кармы, <br>— твои таланты и вызовы.</p>
+    <p>📜 Я читаю эти метки. <br>Профессионально, бережно, без догадок. <br>Как сказочник, перевожу язык чисел в образы
+      и смыслы. <br>Чтобы ты увидел(а) себя — настоящего(ую).<br>Без масок. Без шаблонов.</p>
+    <p>✨ Что ждёт тебя за поворотом? <br>Где твоя внутренняя сила дремлет? <br>Почему повторяются одни и те же уроки?
     </p>
-
-    <p style="text-align:center;">
-      <a href="#form" class="cta-button">👉 Узнать свою историю 🔘</a>
-    </p>
+    <p>🔮 Ответ уже внутри твоей даты рождения. <br>Хочешь — я расскажу тебе и ты узнаешь.</p>
+    <p style="text-align:center; margin-top: 10px;">👇 Оставь свою дату — и я расскажу тебе то, что ты всегда
+      чувствовал(а), но не мог(ла) объяснить.</p>
+    <p style="text-align:center;"><a href="#form" class="cta-button">👉 Узнать свою историю 🔘</a></p>
   </main>
 
   <footer class="container">
     <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
   </footer>
 
+  <script>
+    // подсветка активного
+    document.addEventListener('DOMContentLoaded', () => {
+      const current = window.location.pathname.split('/').pop();
+      document.querySelectorAll('.sidebar a').forEach(link => {
+        if (link.getAttribute('href') === current) link.classList.add('active');
+      });
+    });
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('open');
+    }
+  </script>
   <script src="source/scripts/index.js"></script>
 </body>
 
