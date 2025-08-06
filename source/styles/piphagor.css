@@ -7,52 +7,7 @@ body {
   padding: 40px;
 }
 
-/* === Навигация === */
-.navbar {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 15px 30px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-  position: relative;
-}
 
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-toggle {
-  display: none;
-  font-size: 1.5em;
-  background: none;
-  border: none;
-  color: #f8e7c1;
-  cursor: pointer;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-links li {
-  margin: 0 10px;
-}
-
-.nav-links a {
-  color: #f8e7c1;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: #e3cf9b;
-}
 
 /* === Контейнер основного содержимого === */
 main.container {
@@ -297,8 +252,7 @@ footer a:hover {
 
 /* === Модальное окно === */
 .modal {
-  display: none;
-  /* по умолчанию скрыто */
+  display: none; /* по умолчанию скрыто */
   position: fixed;
   z-index: 9999;
   left: 0;

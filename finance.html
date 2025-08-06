@@ -4,23 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Финансовый график</title>
-  <link rel="stylesheet" href="source/styles/financial_schedule.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Финансовый канал</title>
+  <link rel="stylesheet" href="source/styles/finance.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
 <body>
-
   <!-- 🔥 Off‑canvas панель -->
   <nav class="sidebar">
     <div class="logo">Меню</div>
     <ul>
       <li><a href="index.html"><i class="fa fa-home"></i>Главная</a></li>
-      <li><a href="karmik_table.html"><i class="fa fa-table"></i>Таблица Кармическая</a></li>
+      <li><a href="karmik_table.html" class="active"><i class="fa fa-table"></i>Таблица Кармическая</a></li>
       <li><a href="compatibility.html"><i class="fa fa-heart"></i>Совместимость по Кармической</a></li>
       <li><a href="predict.html"><i class="fa fa-calendar"></i>Прогнозы на год, месяц, день</a></li>
-      <li><a href="financial_schedule.html" class="active"><i class="fa fa-chart-line"></i>Финансовый график</a></li>
+      <li><a href="financial_schedule.html"><i class="fa fa-chart-line"></i>Финансовый график</a></li>
       <li><a href="piphagor.html"><i class="fa fa-square-root-alt"></i>Таблица Пифагора</a></li>
       <li><a href="piph_compat.html"><i class="fa fa-user-friends"></i>Совместимость по Пифагору</a></li>
       <li><a href="finance.html" class="active"><i class="fa fa-coins"></i>Финансовый канал</a></li>
@@ -31,43 +29,33 @@
   <!-- 🔥 Кнопка-бургер -->
   <button class="burger-btn" onclick="toggleSidebar()">☰</button>
 
-  <!-- ✅ Основной контент страницы -->
-  <main class="container">
-    <h2>💰 Финансовый прогноз на год</h2>
+  <div class="container">
+    <h2>Финансовый канал</h2>
 
     <form id="financeForm">
-      <label for="birthdate">Дата рождения:
-        <input type="date" id="birthdate" placeholder="например: 1990-12-31" required />
+      <label for="birthdate">Введите дату рождения:
+        <input type="date" id="birthdate" required />
       </label>
-
-      <label for="targetYear">Год для прогноза:
-        <input type="number" id="targetYear" placeholder="например: 2025" required />
-      </label>
-
-      <label for="fatherName">Имя отца:
-        <input type="text" id="fatherName" placeholder="например: Алексей" required />
-      </label>
-
-      <label for="yourName">Ваше имя:
-        <input type="text" id="yourName" placeholder="например: Иван" required />
-      </label>
-
-      <button type="submit">📊 Построить график</button>
+      <button type="submit" id="calculateBtn">Рассчитать</button>
     </form>
 
-    <div class="chart-container section-block">
-      <canvas id="financeChart"></canvas>
-    </div>
+    <div id="resultTableContainer"></div>
+  </div>
 
-    <button type="button" id="saveChartBtn">💾 Сохранить график</button>
-  </main>
+  <!-- Модальное окно -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <div id="modalText">Загрузка...</div>
+    </div>
+  </div>
 
   <footer class="container">
     <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
   </footer>
 
   <script>
-    // подсветка активной ссылки
+    // подсветка активного
     document.addEventListener('DOMContentLoaded', () => {
       const current = window.location.pathname.split('/').pop();
       document.querySelectorAll('.sidebar a').forEach(link => {
@@ -78,7 +66,8 @@
       document.querySelector('.sidebar').classList.toggle('open');
     }
   </script>
-  <script src="source/scripts/financial_schedule.js"></script>
+
+  <script src="source/scripts/finance.js"></script>
 </body>
 
 </html>
