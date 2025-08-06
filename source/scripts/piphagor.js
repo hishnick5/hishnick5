@@ -489,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const val = digits.replace(/\D/g, '') || '0';
       td.style.cursor = 'pointer';
       td.addEventListener('click', () => {
-        openModalWithFile(`source/psicho/${cellNum}/${val}.txt`, '_blank');
+        openModalWithFile(`source/contents/piphagor/psicho/${cellNum}/${val}.txt`, '_blank');
       });
     });
 
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const bodyVal = bodyCell.innerText.split('\n')[1] || '0';
       bodyCell.style.cursor = 'pointer';
       bodyCell.addEventListener('click', () => {
-        openModalWithFile(`source/bodysoul/${bodyVal}.txt`, '_blank');
+        openModalWithFile(`source/contents/piphagor/bodysoul/${bodyVal}.txt`, '_blank');
       });
     }
 
@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const soulVal = soulCell.innerText.split('\n')[1] || '0';
       soulCell.style.cursor = 'pointer';
       soulCell.addEventListener('click', () => {
-        openModalWithFile(`source/bodysoul/${soulVal}.txt`, '_blank');
+        openModalWithFile(`source/contents/piphagor/bodysoul/${soulVal}.txt`, '_blank');
       });
     }
 
@@ -519,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const totalVal = totalCell.innerText.split('\n')[1] || '0';
       totalCell.style.cursor = 'pointer';
       totalCell.addEventListener('click', () => {
-        openModalWithFile(`source/sunmoon/${totalVal}.txt`, '_blank');
+        openModalWithFile(`source/contents/piphagor/sunmoon/${totalVal}.txt`, '_blank');
       });
     }
 
@@ -534,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       forecastCell.style.cursor = 'pointer';
       forecastCell.addEventListener('click', () => {
-        openModalWithFile(`source/persyear/${forecastVal}.txt`);
+        openModalWithFile(`source/contents/piphagor/persyear/${forecastVal}.txt`);
       });
     }
 
