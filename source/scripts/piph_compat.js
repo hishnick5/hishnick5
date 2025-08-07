@@ -114,11 +114,11 @@ document.addEventListener('DOMContentLoaded', () => {
   <table class="result-table fixed-layout compat-table">
     <tr>
       <td>
-        <div class="cell-label">Совместимость по числу судьбы</div>
+        <div class="cell-label">по числу судьбы</div>
         <div class="cell-value">${destinyCompat}</div>
       </td>
       <td>
-        <div class="cell-label">Совместимость по жизненному коду</div>
+        <div class="cell-label">по жизненному коду</div>
         <div class="cell-value">${lifeCompat}</div>
       </td>
     </tr>

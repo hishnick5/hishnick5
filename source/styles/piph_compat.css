@@ -168,14 +168,14 @@ form#compatForm button:hover {
 
 /* ====== Увеличенный размер для таблицы Результат совместимости ====== */
 .compat-table td .cell-label {
-  font-size: 1.2em;
+  font-size: 0.8em;
   color: #ccc;
   margin-bottom: 6px;
   line-height: 0.1em;
 }
 
 .compat-table td .cell-value {
-  font-size: 1.8em;
+  font-size: 1.1em;
   color: #f8e7c1;
   line-height: 0.1em;
 }
