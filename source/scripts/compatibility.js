@@ -61,8 +61,8 @@ function buildMatrix(input) {
     [`Задача на жизнь (${b})`, `ЧД 2 (${ch_d2})`, `КУ 2 (${karmic2})`, `${period1} - ${period2}`],
     [`Энергия года (${c})`, `ЧД 3 (${ch_d3})`, `КУ 3 (${karmic3})`, `${period2} - ${period3}`],
     [`Предназначение (${d})`, `ЧД 4 (${ch_d4})`, `КУ 4 (${karmic4})`, `${period3} - ∞`],
-    [`Денежный код: ${money_code}`, `Число судьбы ${destiny}`, `КУ 5 (${karmic5})`, `Возраст: ${age}`],
-    [`Денежный канал: ${fin_code}`, `Число сознания: ${day_r}`, `Аркан: (${arkan})`, `Дата рождения: ${fullDate}`]
+    [`Денежный код: ${money_code}`, `Число судьбы (${destiny})`, `КУ 5 (${karmic5})`, `Возраст: ${age}`],
+    [`Денежный канал: ${fin_code}`, `Число сознания: (${day_r})`, `Аркан: (${arkan})`, `Дата рождения: ${fullDate}`]
   ];
 
   return { data, values: { a, b, c, d, arkan, ch_d1 } };
@@ -70,13 +70,22 @@ function buildMatrix(input) {
 
 function renderTable(containerId, title, data) {
   const container = document.getElementById(containerId);
-  let html = `<h3>${title}</h3><table id="resultTable"><thead>
+  let html = `<h3>${title}</h3><table id="resultTable" class="resultTable"><thead>
     <tr><th>Путь</th><th>Число Достижений</th><th>Кармический Узел</th><th>Период</th></tr></thead><tbody>`;
   data.forEach(row => {
-    html += `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`;
+    html += `<tr>${row.map(cell => renderCell(cell)).join('')}</tr>`;
   });
   html += `</tbody></table>`;
   container.innerHTML = html;
+
+  container.querySelectorAll('.clickable-cell').forEach(td => {
+    td.addEventListener('click', () => {
+      const label = td.dataset.label;
+      const value = td.dataset.value;
+      const path = getFilePath(label, value);
+      if (path) openModal(path);
+    });
+  });
 }
 
 function renderCompatibility(m, f) {
@@ -89,18 +98,72 @@ function renderCompatibility(m, f) {
     ["Проблемы в отношениях", editNumb(m.ch_d1 + f.ch_d1)]
   ];
   const container = document.getElementById("compatTable");
-  let html = `<h3>Совместимость</h3><table id="resultTable"><thead>
+  let html = `<h3>Совместимость</h3><table id="resultTable" class="resultTable"><thead>
     <tr><th>Параметр</th><th>Число</th></tr></thead><tbody>`;
-  rows.forEach(([param, value]) => {
-    html += `<tr><td>${param}</td><td>${value}</td></tr>`;
+  rows.forEach(([label, value]) => {
+    html += `<tr><td>${label}</td><td class="clickable-cell" data-label="${label}" data-value="${value}">(${value})</td></tr>`;
   });
   html += `</tbody></table>`;
   container.innerHTML = html;
+
+  container.querySelectorAll('.clickable-cell').forEach(td => {
+    td.addEventListener('click', () => {
+      const label = td.dataset.label;
+      const number = td.dataset.value;
+      let basePath = '';
+      switch (label) {
+        case 'Как познакомились':
+          basePath = 'source/contents/compatibility/1_dating_period/';
+          break;
+        case 'Развитие отношений':
+          basePath = 'source/contents/compatibility/2_relationship_period/';
+          break;
+        case 'Как закончатся':
+          basePath = 'source/contents/compatibility/3_relationship_end/';
+          break;
+        case 'Ядро отношений':
+          basePath = 'source/contents/compatibility/4_relationship_core/';
+          break;
+        case 'Общая цель':
+          basePath = 'source/contents/compatibility/5_relationship_target/';
+          break;
+        case 'Проблемы в отношениях':
+          basePath = 'source/contents/compatibility/6_r/';
+          break;
+      }
+      if (basePath) openModal(`${basePath}${number}.txt`);
+    });
+  });
 }
 
-function toggleMenu() {
-  const nav = document.querySelector('.nav-links');
-  nav.classList.toggle('show');
+function renderCell(text) {
+  const match = text.match(/\((\d+)\)/);
+  if (!match) return `<td>${text}</td>`;
+  return `<td class="clickable-cell" data-label="${text}" data-value="${match[1]}">${text}</td>`;
+}
+
+function getFilePath(label, number) {
+  if (label.includes('Супер сила')) return `source/contents/karmik/life_road/super/${number}.txt`;
+  if (label.includes('Задача на жизнь')) return `source/contents/karmik/life_road/tasklife/${number}.txt`;
+  if (label.includes('Энергия года')) return `source/contents/karmik/life_road/energy/${number}.txt`;
+  if (label.includes('Предназначение')) return `source/contents/karmik/life_road/mission/${number}.txt`;
+  if (label.includes('Число судьбы')) return `source/contents/karmik/number_destiny/${number}.txt`;
+  if (label.includes('Число сознания')) return `source/contents/piphagor/vedichesk/${number}.txt`;
+  if (label.includes('Аркан')) return `source/contents/arcana/${number}.txt`;
+  if (label.includes('ЧД')) return `source/contents/karmik/success/${number}.txt`;
+  if (label.includes('КУ')) return `source/contents/karmik/karmik_lessons/${number}.txt`;
+  return null;
+}
+
+function openModal(path) {
+  fetch(path)
+    .then(res => res.ok ? res.text() : 'Ошибка загрузки файла')
+    .then(text => {
+      const modal = document.getElementById('modal');
+      const modalText = document.getElementById('modalText');
+      modalText.textContent = text;
+      modal.style.display = 'block';
+    });
 }
 
 document.getElementById('compatForm').addEventListener('submit', e => {
