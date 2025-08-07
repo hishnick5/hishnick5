@@ -480,66 +480,62 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function makeCellsClickable() {
-    // ячейки 1–9 в двух первых таблицах
+    // Ячейки 1–9 в двух первых таблицах (используем data-val вместо innerText)
     document.querySelectorAll('#matrixTable td.numbered-cell, #nameMatrixTable td.numbered-cell').forEach(td => {
       const numberDiv = td.querySelector('.cell-number');
       if (!numberDiv) return;
-      const cellNum = numberDiv.textContent.trim();
-      const digits = td.innerText.split('\n')[1] || '';
-      const val = digits.replace(/\D/g, '') || '0';
+
+      const cellNum = numberDiv.textContent.trim();      // номер клетки 1..9
+      const val = (td.dataset.val || '').trim();         // ГЛАВНОЕ: забираем готовое число из data-val
+      if (!val) return;
+
       td.style.cursor = 'pointer';
       td.addEventListener('click', () => {
-        openModalWithFile(`source/contents/piphagor/psicho/${cellNum}/${val}.txt`, '_blank');
+        openModalWithFile(`source/contents/piphagor/psicho/${cellNum}/${val}.txt`);
       });
     });
 
     // Дополнения: тело
-    const bodyCell = [...document.querySelectorAll('#extraTable td')].find(td => td.innerText.includes('Тех.расклад Тела'));
+    const bodyCell = [...document.querySelectorAll('#extraTable td')].find(td => td.textContent.includes('Тех.расклад Тела'));
     if (bodyCell) {
-      const bodyVal = bodyCell.innerText.split('\n')[1] || '0';
+      const bodyVal = (bodyCell.textContent.match(/\d+/g) || ['0']).join('');
       bodyCell.style.cursor = 'pointer';
       bodyCell.addEventListener('click', () => {
-        openModalWithFile(`source/contents/piphagor/bodysoul/${bodyVal}.txt`, '_blank');
+        openModalWithFile(`source/contents/piphagor/bodysoul/${bodyVal}.txt`);
       });
     }
 
     // Дополнения: душа
-    const soulCell = [...document.querySelectorAll('#extraTable td')].find(td => td.innerText.includes('Тех.расклад Души'));
+    const soulCell = [...document.querySelectorAll('#extraTable td')].find(td => td.textContent.includes('Тех.расклад Души'));
     if (soulCell) {
-      const soulVal = soulCell.innerText.split('\n')[1] || '0';
+      const soulVal = (soulCell.textContent.match(/\d+/g) || ['0']).join('');
       soulCell.style.cursor = 'pointer';
       soulCell.addEventListener('click', () => {
-        openModalWithFile(`source/contents/piphagor/bodysoul/${soulVal}.txt`, '_blank');
+        openModalWithFile(`source/contents/piphagor/bodysoul/${soulVal}.txt`);
       });
     }
 
     // Дополнения: итог года
-    const totalCell = [...document.querySelectorAll('#extraTable td')].find(td => td.innerText.includes('Итог года'));
+    const totalCell = [...document.querySelectorAll('#extraTable td')].find(td => td.textContent.includes('Итог года'));
     if (totalCell) {
-      const totalVal = totalCell.innerText.split('\n')[1] || '0';
+      const totalVal = (totalCell.textContent.match(/\d+/g) || ['0']).join('');
       totalCell.style.cursor = 'pointer';
       totalCell.addEventListener('click', () => {
-        openModalWithFile(`source/contents/piphagor/sunmoon/${totalVal}.txt`, '_blank');
+        openModalWithFile(`source/contents/piphagor/sunmoon/${totalVal}.txt`);
       });
     }
 
     // Дополнения: персональное число
-    const forecastCell = [...document.querySelectorAll('#extraTable td')]
-      .find(td => td.innerText.includes('Персональное'));
+    const forecastCell = [...document.querySelectorAll('#extraTable td')].find(td => td.textContent.includes('Персональное'));
     if (forecastCell) {
-      // Берём весь текст ячейки
-      const cellText = forecastCell.innerText;
-      // Извлекаем только цифры
-      const forecastVal = cellText.replace(/\D/g, '') || '0';
-
+      const forecastVal = (forecastCell.textContent.match(/\d+/g) || ['0']).join('');
       forecastCell.style.cursor = 'pointer';
       forecastCell.addEventListener('click', () => {
         openModalWithFile(`source/contents/piphagor/persyear/${forecastVal}.txt`);
       });
     }
+  }
 
-
-  };
 
   // === Модальное окно ===
   const modal = document.getElementById('modal');
