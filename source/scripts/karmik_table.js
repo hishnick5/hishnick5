@@ -85,7 +85,7 @@ function calculateMatrix() {
       else if (val.includes('Предназначение')) td.onclick = () => openModal('source/contents/karmik/life_road/mission/', val);
       else if (val.includes('Число судьбы')) td.onclick = () => openModal('source/contents/karmik/number_destiny/', val);
       else if (val.includes('Число сознания')) td.onclick = () => openModal('source/contents/piphagor/vedichesk/', val);
-      else if (val.includes('Аркан')) td.onclick = () => openModal('source/contents/arcana/', val, 'html');
+      else if (val.includes('Аркан')) td.onclick = () => openModal('source/contents/arcana/', val);
 
       // (2) ЧД
       else if (val.includes('ЧД')) td.onclick = () => openModal('source/contents/karmik/success/', val);
