@@ -12,7 +12,6 @@ function reduce(num) {
 function calculateMatrix() {
   const input = document.getElementById('birthdate').value;
   if (!input) return alert('Выберите дату рождения!');
-  // const [day, month, year] = input.split('.').map(Number); // ✅ исправлено
   const [year, month, day] = input.split('-').map(Number);
   const dayStr = String(day).padStart(2, '0');
   const monthStr = String(month).padStart(2, '0');
@@ -69,34 +68,61 @@ function calculateMatrix() {
 
   const tableBody = document.querySelector('#resultTable tbody');
   tableBody.innerHTML = '';
+
   data.forEach(row => {
     const tr = document.createElement('tr');
     row.forEach(val => {
       const td = document.createElement('td');
       td.textContent = val;
-      td.onclick = () => openPDF(val);
+
+      // Убираем все старые обработчики
+      td.onclick = null;
+
+      // (1) обработка чисел в скобках
+      if (val.includes('Супер сила')) td.onclick = () => openModal('source/contents/karmik/life_road/super/', val);
+      else if (val.includes('Задача на жизнь')) td.onclick = () => openModal('source/contents/karmik/life_road/tasklife/', val);
+      else if (val.includes('Энергия года')) td.onclick = () => openModal('source/contents/karmik/life_road/energy/', val);
+      else if (val.includes('Предназначение')) td.onclick = () => openModal('source/contents/karmik/life_road/mission/', val);
+      else if (val.includes('Число судьбы')) td.onclick = () => openModal('source/contents/karmik/number_destiny/', val);
+      else if (val.includes('Число сознания')) td.onclick = () => openModal('source/contents/piphagor/vedichesk/', val);
+      else if (val.includes('Аркан')) td.onclick = () => openModal('source/contents/arcana/', val, 'html');
+
+      // (2) ЧД
+      else if (val.includes('ЧД')) td.onclick = () => openModal('source/contents/karmik/success/', val);
+
+      // (3) КУ
+      else if (val.includes('КУ')) td.onclick = () => openModal('source/contents/karmik/karmik_lessons/', val);
+
       tr.appendChild(td);
     });
     tableBody.appendChild(tr);
   });
 }
 
-function toggleMenu() {
-  const nav = document.querySelector('.nav-links');
-  nav.classList.toggle('show');
+function openModal(basePath, value, ext = 'txt') {
+  const match = value.match(/\((\d+)\)/);
+  if (!match) return;
+  const number = match[1];
+  const path = `${basePath}${number}.${ext}`;
+  fetch(path)
+    .then(res => res.ok ? res.text() : 'Ошибка загрузки')
+    .then(text => {
+      const modal = document.getElementById('modal');
+      const modalText = document.getElementById('modalText');
+      modalText.textContent = text;
+      modal.style.display = 'block';
+    });
 }
 
-// Подключаем обработчик формы для Enter
+// Обработчик формы
 document.getElementById('dateForm').addEventListener('submit', e => {
   e.preventDefault();
   calculateMatrix();
 });
 
-function openPDF(text) {
-  const match = text.match(/\((\d+)\)/);
-  if (match) {
-    const number = match[1];
-    const path = `Arkana/${number}.pdf`;
-    window.open(path, '_blank');
+// Закрытие модалки
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('modal-close') || e.target.classList.contains('modal')) {
+    document.getElementById('modal').style.display = 'none';
   }
-}
+});
