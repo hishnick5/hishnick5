@@ -1,35 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("modal");
-  const modalText = document.getElementById("modalText");
-  const closeModal = document.querySelector(".modal-close");
-
-  document.querySelectorAll(".result-table td:last-child").forEach(cell => {
+  document.querySelectorAll(".result-table td[data-num]").forEach(cell => {
     cell.addEventListener("click", () => {
       const number = cell.getAttribute("data-num");
-      const url = `source/contents/arcana/${number}.html`;
-
-      fetch(url)
-        .then(res => {
-          if (!res.ok) throw new Error("Файл не найден");
-          return res.text();
-        })
-        .then(html => {
-          modalText.innerHTML = html;
-          modal.style.display = "block";
-        })
-        .catch(err => {
-          console.error(err);
-          modalText.textContent = "Ошибка загрузки содержимого.";
-          modal.style.display = "block";
-        });
+      openModal(`source/contents/arcana/${number}.txt`);
     });
   });
 
-  closeModal.addEventListener("click", () => {
-    modal.style.display = "none";
+  document.querySelector(".modal-close").addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
   });
 
   window.addEventListener("click", e => {
-    if (e.target === modal) modal.style.display = "none";
+    if (e.target === document.getElementById("modal")) {
+      document.getElementById("modal").style.display = "none";
+    }
   });
 });
+
+function openModal(path) {
+  fetch(path)
+    .then(res => res.ok ? res.text() : 'Ошибка загрузки файла')
+    .then(text => {
+      const modal = document.getElementById('modal');
+      const modalText = document.getElementById('modalText');
+      modalText.textContent = text;
+      modal.style.display = 'block';
+    });
+}
