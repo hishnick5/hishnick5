@@ -9,26 +9,26 @@
 </head>
 <body>
 
-  <!-- 🔥 новая off‑canvas панель -->
+  <!-- 🔥 off‑canvas панель -->
   <nav class="sidebar">
     <div class="logo">Меню</div>
     <ul>
       <li><a href="index.html"><i class="fa fa-home"></i>Главная</a></li>
-      <li><a href="karmik_table.html"><i class="fa fa-table"></i>Таблица Кармическая</a></li>
-      <li><a href="compatibility.html"><i class="fa fa-heart"></i>Совместимость по Кармической</a></li>
-      <li><a href="predict.html"><i class="fa fa-calendar"></i>Прогнозы на год, месяц, день</a></li>
-      <li><a href="financial_schedule.html"><i class="fa fa-chart-line"></i>Финансовый график</a></li>
       <li><a href="piphagor.html"><i class="fa fa-square-root-alt"></i>Таблица Пифагора</a></li>
+      <li><a href="karmik_table.html"><i class="fa fa-table"></i>Таблица Кармическая</a></li>
       <li><a href="piph_compat.html"><i class="fa fa-user-friends"></i>Совместимость по Пифагору</a></li>
+      <li><a href="compatibility.html"><i class="fa fa-heart"></i>Совместимость по Кармической</a></li>
+      <li><a href="predict.html"><i class="fa fa-calendar"></i>Прогноз событий на дату</a></li>
+      <li><a href="financial_schedule.html"><i class="fa fa-chart-line"></i>Прогноз финансов</a></li>
       <li><a href="finance.html"><i class="fa fa-coins"></i>Финансовый канал</a></li>
       <li><a href="arcana.html"><i class="fa fa-star"></i>Арканы</a></li>
     </ul>
   </nav>
 
-  <!-- 🔥 кнопка-бургер -->
+  <!-- 🔥 бургер -->
   <button class="burger-btn" onclick="toggleSidebar()">☰</button>
 
-  <!-- ✅ основной контент без изменений -->
+  <!-- ✅ контент -->
   <main class="container">
     <h2>📆 Прогнозы на основе даты рождения</h2>
 
@@ -43,7 +43,7 @@
       <label for="predictDay">день, месяц, год:
         <input type="date" id="predictDay" />
       </label>
-      <button onclick="predictForDay()">Рассчитать</button>
+      <button id="btnDay" type="button">Рассчитать</button>
       <div id="dayResult" class="fadeInUp"></div>
     </section>
 
@@ -52,7 +52,7 @@
       <label for="predictMonth">месяц и год:
         <input type="month" id="predictMonth" />
       </label>
-      <button onclick="predictForMonth()">Рассчитать</button>
+      <button id="btnMonth" type="button">Рассчитать</button>
       <div id="monthResult" class="fadeInUp"></div>
     </section>
 
@@ -61,21 +61,36 @@
       <label for="predictYear">год:
         <input type="number" id="predictYear" min="1900" max="2900" placeholder="Например, 2025" />
       </label>
-      <button onclick="predictForYear()">Рассчитать</button>
+      <button id="btnYear" type="button">Рассчитать</button>
       <div id="yearResult" class="fadeInUp"></div>
     </section>
   </main>
+
+  <!-- 🔍 Модальное окно -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <div id="modalText"></div>
+    </div>
+  </div>
 
   <footer class="container">
     <small><a href="#">Политика конфиденциальности</a> • <a href="#">Условия использования</a></small>
   </footer>
 
   <script>
-    // подсветка активного пункта меню
+    // подсветка активного
     document.addEventListener('DOMContentLoaded', () => {
       const current = window.location.pathname.split('/').pop();
       document.querySelectorAll('.sidebar a').forEach(link => {
         if (link.getAttribute('href') === current) link.classList.add('active');
+      });
+
+      // Закрытие модалки по клику на фон/крестик
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal-close') || e.target.classList.contains('modal')) {
+          document.getElementById('modal').style.display = 'none';
+        }
       });
     });
     function toggleSidebar() {

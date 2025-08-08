@@ -92,10 +92,10 @@ function renderCompatibility(m, f) {
   const rows = [
     ["Как познакомились", editNumb(m.a + f.a)],
     ["Развитие отношений", editNumb(m.b + f.b)],
-    ["Как закончатся", editNumb(m.c + f.c)],
     ["Ядро отношений", editNumb(m.arkan + f.arkan)],
     ["Общая цель", editNumb(m.d + f.d)],
-    ["Проблемы в отношениях", editNumb(m.ch_d1 + f.ch_d1)]
+    ["Проблемы в отношениях", editNumb(m.ch_d1 + f.ch_d1)],
+    ["Как закончатся", editNumb(m.c + f.c)],
   ];
   const container = document.getElementById("compatTable");
   let html = `<h3>Совместимость</h3><table id="resultTable" class="resultTable"><thead>
@@ -118,9 +118,6 @@ function renderCompatibility(m, f) {
         case 'Развитие отношений':
           basePath = 'source/contents/compatibility/2_relationship_period/';
           break;
-        case 'Как закончатся':
-          basePath = 'source/contents/compatibility/3_relationship_end/';
-          break;
         case 'Ядро отношений':
           basePath = 'source/contents/compatibility/4_relationship_core/';
           break;
@@ -128,7 +125,10 @@ function renderCompatibility(m, f) {
           basePath = 'source/contents/compatibility/5_relationship_target/';
           break;
         case 'Проблемы в отношениях':
-          basePath = 'source/contents/compatibility/6_r/';
+          basePath = 'source/contents/compatibility/6_relationship_problem/';
+          break;
+        case 'Как закончатся':
+          basePath = 'source/contents/compatibility/3_relationship_end/';
           break;
       }
       if (basePath) openModal(`${basePath}${number}.txt`);
