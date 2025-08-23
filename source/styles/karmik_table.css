@@ -338,8 +338,9 @@ strong {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
+/* === Модальное окно === */
 .modal {
-  display: none;
+  display: none; /* по умолчанию скрыто */
   position: fixed;
   z-index: 9999;
   left: 0;
@@ -348,6 +349,7 @@ strong {
   height: 100%;
   overflow: auto;
   background: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.3s ease;
 }
 
 .modal-content {
@@ -360,6 +362,8 @@ strong {
   border-radius: 12px;
   color: #f3f3f3;
   white-space: pre-line;
+  box-shadow: 0 0 30px rgba(248, 231, 193, 0.3);
+  font-size: 1.4em;
 }
 
 .modal-close {
