@@ -104,3 +104,15 @@ document.addEventListener('keydown', function (e) {
     }
   }
 });
+
+/* === Автоподстановка текущего года (не трогаем ручной ввод) === */
+document.addEventListener('DOMContentLoaded', () => {
+  const yearInput = document.getElementById('targetYear');
+  if (yearInput) {
+    const currentYear = String(new Date().getFullYear());
+    const val = (yearInput.value || '').trim();
+    if (!/^\d{4}$/.test(val)) {
+      yearInput.value = currentYear;
+    }
+  }
+});
