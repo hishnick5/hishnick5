@@ -67,11 +67,33 @@ main.container {
   animation: fadeIn 1.2s ease;
 }
 
+/* === Заголовки === */
+main.container h2 {
+  font-size: 1.2em;
+}
+
+main.container h3 {
+  font-size: .8em;
+}
+
+
 h1,
 h2,
 h3 {
   text-align: center;
   color: #f8e7c1;
+}
+
+h1 {
+  font-size: 1em;
+}
+
+h2 {
+  font-size: 1em;
+}
+
+h3 {
+  font-size: 1em;
 }
 
 form {
@@ -152,6 +174,16 @@ footer a:hover {
   text-decoration: underline;
 }
 
+/* выровнять футер под index и убрать рамку/тень */
+.site-footer,
+.site-footer .container {
+  text-align: center;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -173,6 +205,12 @@ footer a:hover {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    animation: none;
   }
 }
 
@@ -266,6 +304,7 @@ strong {
   width: 260px;
   height: 100%;
   background: rgba(30, 30, 30, 0.95);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.6);
   padding-top: 60px;
@@ -338,9 +377,8 @@ strong {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
-/* === Модальное окно === */
 .modal {
-  display: none; /* по умолчанию скрыто */
+  display: none;
   position: fixed;
   z-index: 9999;
   left: 0;
@@ -349,7 +387,6 @@ strong {
   height: 100%;
   overflow: auto;
   background: rgba(0, 0, 0, 0.8);
-  animation: fadeIn 0.3s ease;
 }
 
 .modal-content {
@@ -362,8 +399,6 @@ strong {
   border-radius: 12px;
   color: #f3f3f3;
   white-space: pre-line;
-  box-shadow: 0 0 30px rgba(248, 231, 193, 0.3);
-  font-size: 1.4em;
 }
 
 .modal-close {
@@ -376,4 +411,125 @@ strong {
 
 .modal-close:hover {
   color: #fff3d0;
+}
+
+/* === Sidebar sizing (drop-in override) === */
+:root {
+  --sb-w: 260px;
+  /* ширина панели */
+  --sb-font: 1rem;
+  /* базовый размер шрифта ссылок */
+  --sb-logo-h: 60px;
+  /* высота шапки логотипа */
+  --sb-item-py: 12px;
+  /* вертикальные отступы пункта */
+  --sb-item-px: 16px;
+  /* горизонтальные отступы пункта */
+  --sb-icon-w: 22px;
+  /* ширина иконки слева */
+  --sb-icon-gap: 10px;
+  /* расстояние между иконкой и текстом */
+  --sb-burger-font: 1.2em;
+  /* размер «бургер»-кнопки */
+  --sb-burger-py: 6px;
+  /* вертикальные отступы бургера */
+  --sb-burger-px: 10px;
+  /* горизонтальные отступы бургера */
+}
+
+/* применяем переменные к текущей верстке */
+.sidebar {
+  width: var(--sb-w);
+  left: calc(-1 * var(--sb-w));
+}
+
+.sidebar .logo {
+  height: var(--sb-logo-h);
+  font-size: calc(var(--sb-font) * 1.2);
+}
+
+.sidebar ul li a {
+  padding: var(--sb-item-py) var(--sb-item-px);
+  font-size: var(--sb-font);
+}
+
+.sidebar ul li a i {
+  width: var(--sb-icon-w);
+  margin-right: var(--sb-icon-gap);
+}
+
+.burger-btn {
+  font-size: var(--sb-burger-font);
+  padding: var(--sb-burger-py) var(--sb-burger-px);
+}
+
+/* Готовые пресеты: добавь класс .sidebar--sm или .sidebar--xs */
+.sidebar--sm,
+.compact-sidebar .sidebar {
+  --sb-w: 220px;
+  --sb-font: .95rem;
+  --sb-logo-h: 52px;
+  --sb-item-py: 10px;
+  --sb-item-px: 14px;
+  --sb-icon-w: 18px;
+  --sb-icon-gap: 8px;
+  --sb-burger-font: 1.1em;
+  --sb-burger-py: 6px;
+  --sb-burger-px: 10px;
+}
+
+.sidebar--xs,
+.compact-sidebar-xs .sidebar {
+  --sb-w: 200px;
+  --sb-font: .9rem;
+  --sb-logo-h: 48px;
+  --sb-item-py: 8px;
+  --sb-item-px: 12px;
+  --sb-icon-w: 16px;
+  --sb-icon-gap: 8px;
+  --sb-burger-font: 1em;
+  --sb-burger-py: 5px;
+  --sb-burger-px: 8px;
+}
+
+/* Мобильные уточнения */
+@media (max-width: 768px) {
+  .sidebar {
+    --sb-w: 220px;
+  }
+
+  .sidebar ul li a {
+    font-size: .75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    --sb-w: 200px;
+  }
+
+  .sidebar ul li a {
+    font-size: .7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .burger-btn {
+    width: auto !important;
+    display: inline-flex !important;
+  }
+}
+
+/* ↓ уменьшает текст ссылок ТОЛЬКО в десктопной версии */
+@media (min-width: 769px) {
+  .sidebar ul li>a {
+    font-size: 0.8rem !important;
+    line-height: 1.2;
+  }
+
+  .sidebar ul li>a i {
+    font-size: 0.85em;
+  }
+
+  /* чтобы иконка масштабировалась вместе с текстом */
 }
